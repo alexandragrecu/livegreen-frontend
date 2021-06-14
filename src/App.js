@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 
 // import components
 import Header from './components/header/header.component';
+import Login from './components/login/login.component';
 
 // import css files
 import './assets/css/style.css';
@@ -25,93 +26,7 @@ const App = () => {
       <Sticky>
         <Header />
       </Sticky>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
-      <div>aa</div>
+      <Login />
     </Fragment>
   );
 };

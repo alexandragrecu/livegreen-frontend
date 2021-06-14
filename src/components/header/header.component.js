@@ -4,13 +4,9 @@ import React, { useEffect } from 'react';
 import logo from './../../assets/images/logo.png';
 
 // import utils
-import { showMobileMenu, createStikyHeader } from '../../helpers/header.utils';
+import { showMobileMenu } from '../../helpers/header.utils';
 
 const Header = () => {
-  useEffect(() => {
-    createStikyHeader();
-  }, []);
-
   return (
     <header>
       <div className="container">
