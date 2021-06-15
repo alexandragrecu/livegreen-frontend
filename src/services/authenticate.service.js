@@ -4,15 +4,17 @@ import axios from 'axios';
 import { API_URL } from './../constants/constants';
 
 export const login = async (params) => {
-  let response;
   try {
-    response = await axios({
+    let response = await axios({
       method: 'post',
       url: `${API_URL}/users/login`,
       data: params,
     });
+    console.log('response', response);
+    return response;
   } catch (error) {
-    response = error;
+    console.log(error.response);
+
+    return error.response;
   }
-  return response;
 };

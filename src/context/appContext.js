@@ -7,14 +7,26 @@ const AppContext = createContext();
 
 function AppProvider({ children }) {
   const [user, setUser] = useLocalStorage('user', false);
+  console.log(typeof setUser);
 
   // login credentials
   const [credentials, setCredentials] = useState({ email: '', password: '' });
+  console.log('credentials', credentials);
+  // spinner
+  const [showSpinner, setShowSpinner] = useState(false);
+  // error message
+  const [errorMessage, setErrorMessage] = useState(false);
 
   /* eslint-disable */
   const store = {
     credentials,
     setCredentials,
+    user,
+    setUser,
+    showSpinner,
+    setShowSpinner,
+    errorMessage,
+    setErrorMessage,
   };
 
   const storeForProvider = useMemo(() => store, [store]);
