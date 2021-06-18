@@ -11,7 +11,6 @@ export const doLogin = async (
   setShowSpinner(true);
 
   let response = await authentication.login(loginCredentials);
-  console.log('RESPONSE', response);
   if (response) {
     if (response.status === 200 && response.data.status === 'success') {
       setUser(response.data.data.user);
@@ -38,7 +37,6 @@ export const doRegister = async (
   setShowSpinner(true);
 
   let response = await authentication.register(registerCredentials);
-  console.log(response);
   if (response) {
     if (response.status === 201 && response.data.status === 'success') {
       setUser(response.data.data.user);
@@ -62,7 +60,6 @@ export const doLogout = async (
 ) => {
   setShowSpinner(true);
   let response = await authentication.logout();
-  console.log('LOGOUT', response);
 
   if (response) {
     if (response.status === 200 && response.data.status === 'success') {

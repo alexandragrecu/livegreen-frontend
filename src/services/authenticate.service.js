@@ -32,7 +32,6 @@ export const register = async (params) => {
 
 export const logout = async () => {
   const token = getToken();
-  console.log('TOKEEEN', token);
 
   const config = {
     headers: { Authorization: `Bearer ${token}` },

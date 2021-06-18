@@ -33,10 +33,7 @@ const Register = () => {
     setToken,
   } = useContext(AppContext);
 
-  console.log('registerCredentials', registerCredentials);
-
   const [confirmPassword, setConfirmPassword] = useState('');
-  console.log('confirm password', confirmPassword);
 
   const [typing, setTyping] = useState({
     firstName: false,

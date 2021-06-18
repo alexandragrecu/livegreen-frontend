@@ -7,7 +7,7 @@ const AppContext = createContext();
 
 function AppProvider({ children }) {
   const [user, setUser] = useLocalStorage('user', false);
-
+  console.log('USER', user);
   const [token, setToken] = useLocalStorage('token', null);
   console.log('TOKEN', token);
 
