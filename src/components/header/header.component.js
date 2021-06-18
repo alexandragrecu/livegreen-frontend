@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 // import logo
 import logo from './../../assets/images/logo.png';
@@ -6,7 +6,11 @@ import logo from './../../assets/images/logo.png';
 // import utils
 import { showMobileMenu } from '../../helpers/header.utils';
 
+// import context
+import { AppContext } from './../../context/appContext';
+
 const Header = () => {
+  const { setShowLoginModal } = useContext(AppContext);
   return (
     <header>
       <div className="container">
@@ -37,7 +41,7 @@ const Header = () => {
           </div>
           <div className="col-md-3 hidden-sm hidden-xs col-xs-12">
             <ul className="header-menu-right">
-              <li>
+              <li onClick={() => setShowLoginModal(true)}>
                 {' '}
                 <a className="login-button" href={void 0}>
                   Login
@@ -95,5 +99,4 @@ const Header = () => {
     </header>
   );
 };
-
 export default Header;

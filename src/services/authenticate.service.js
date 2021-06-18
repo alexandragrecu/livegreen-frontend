@@ -10,11 +10,8 @@ export const login = async (params) => {
       url: `${API_URL}/users/login`,
       data: params,
     });
-    console.log('response', response);
     return response;
   } catch (error) {
-    console.log(error.response);
-
     return error.response;
   }
 };

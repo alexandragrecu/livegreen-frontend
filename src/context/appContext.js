@@ -9,8 +9,14 @@ function AppProvider({ children }) {
   const [user, setUser] = useLocalStorage('user', false);
   console.log(typeof setUser);
 
+  // login
+
   // login credentials
   const [credentials, setCredentials] = useState({ email: '', password: '' });
+  // show login modal
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  console.log('showww', showLoginModal);
+
   console.log('credentials', credentials);
   // spinner
   const [showSpinner, setShowSpinner] = useState(false);
@@ -27,6 +33,8 @@ function AppProvider({ children }) {
     setShowSpinner,
     errorMessage,
     setErrorMessage,
+    showLoginModal,
+    setShowLoginModal,
   };
 
   const storeForProvider = useMemo(() => store, [store]);

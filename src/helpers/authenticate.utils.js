@@ -8,8 +8,9 @@ export const doLogin = async (
   setErrorMessage
 ) => {
   setShowSpinner(true);
+
   let response = await authentication.login(credentials);
-  console.log('responseeee', response.status);
+
   if (response) {
     if (response.status === 200 && response.data.status === 'success') {
       setUser(response.data.data.user);

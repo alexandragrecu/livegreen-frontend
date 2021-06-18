@@ -29,10 +29,9 @@ const Login = () => {
     setShowSpinner,
     errorMessage,
     setErrorMessage,
+    showLoginModal,
+    setShowLoginModal,
   } = useContext(AppContext);
-  console.log('errorMessage', errorMessage);
-
-  // response after login
 
   const [typing, setTyping] = useState({
     email: false,
@@ -69,11 +68,13 @@ const Login = () => {
   return (
     <Fragment>
       {showSpinner ? <Spinner /> : null}
-      {!showSpinner && !user && (
+      {!showSpinner && !user && showLoginModal && (
         <div id="myModallogin" className="modalLogin">
           <div className="modal-content">
             <div className="modal-body">
-              <span className="close">&times;</span>
+              <span className="close" onClick={() => setShowLoginModal(false)}>
+                &times;
+              </span>
               <form className="" action="" method="">
                 <div className="form-group">
                   <Input
