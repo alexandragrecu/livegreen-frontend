@@ -18,18 +18,20 @@ const override = css`
   bottom: 0;
   left: 0;
   right: 0;
-
   margin: auto;
+  z-index: 1000;
 `;
 
 const Spinner = (props) => {
   return (
-    <CircleLoader
-      color={color}
-      loading={props.loading}
-      size={100}
-      css={override}
-    />
+    <div className="backgroundSpinner">
+      <CircleLoader
+        color={color}
+        loading={props.loading}
+        size={100}
+        css={override}
+      />
+    </div>
   );
 };
 
