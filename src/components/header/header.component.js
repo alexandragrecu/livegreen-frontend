@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 
 // import logo
 import logo from './../../assets/images/logo.png';
@@ -10,14 +10,14 @@ import { showMobileMenu } from '../../helpers/header.utils';
 import { AppContext } from './../../context/appContext';
 
 const Header = () => {
-  const { setShowLoginModal } = useContext(AppContext);
+  const { setShowLoginModal, setShowRegisterModal } = useContext(AppContext);
   return (
     <header>
       <div className="container">
         <div className="row">
           <div className="col-md-3 col-xs-12">
             <div className="logo-area">
-              <a href={void 0}>
+              <a href="#/">
                 {' '}
                 <img src={logo} alt="logo Live Green" />
               </a>
@@ -27,7 +27,7 @@ const Header = () => {
             <ul className="header-menu-center">
               <li>
                 {' '}
-                <a href={void 0}>How it works</a>{' '}
+                <a href="#/">How it works</a>{' '}
               </li>
               <li>
                 {' '}
@@ -35,7 +35,7 @@ const Header = () => {
               </li>
               <li>
                 {' '}
-                <a href={void 0}>About us</a>{' '}
+                <a href="#/">About us</a>{' '}
               </li>
             </ul>
           </div>
@@ -43,13 +43,13 @@ const Header = () => {
             <ul className="header-menu-right">
               <li onClick={() => setShowLoginModal(true)}>
                 {' '}
-                <a className="login-button" href={void 0}>
+                <a className="login-button" href="#/">
                   Login
                 </a>{' '}
               </li>
-              <li>
+              <li onClick={() => setShowRegisterModal(true)}>
                 {' '}
-                <a className="register-button" href={void 0}>
+                <a className="register-button" href="#/">
                   Register
                 </a>{' '}
               </li>
@@ -64,7 +64,7 @@ const Header = () => {
                   <ul className="header-menu-mobile">
                     <li>
                       {' '}
-                      <a href={void 0}>How it works</a>{' '}
+                      <a href="#/">How it works</a>{' '}
                     </li>
                     <li>
                       {' '}
@@ -72,23 +72,23 @@ const Header = () => {
                     </li>
                     <li>
                       {' '}
-                      <a href={void 0}>About us</a>{' '}
+                      <a href="#/">About us</a>{' '}
                     </li>
-                    <li>
+                    <li onClick={() => setShowLoginModal(true)}>
                       {' '}
-                      <a className="login-button" href={void 0}>
+                      <a className="login-button" href="#/">
                         Login
                       </a>{' '}
                     </li>
-                    <li>
+                    <li onClick={() => setShowRegisterModal(true)}>
                       {' '}
-                      <a className="register-button" href={void 0}>
+                      <a className="register-button" href="#/">
                         Register
                       </a>{' '}
                     </li>
                   </ul>
                 </div>
-                <a href={void 0} className="icon" onClick={showMobileMenu}>
+                <a href="#/" className="icon" onClick={showMobileMenu}>
                   <i className="fa fa-bars"></i>
                 </a>
               </div>

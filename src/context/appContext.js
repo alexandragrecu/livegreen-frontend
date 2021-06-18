@@ -10,14 +10,25 @@ function AppProvider({ children }) {
   console.log(typeof setUser);
 
   // login
-
   // login credentials
-  const [credentials, setCredentials] = useState({ email: '', password: '' });
-  // show login modal
+  const [loginCredentials, setLoginCredentials] = useState({
+    email: '',
+    password: '',
+  });
+  // show login & register modal
   const [showLoginModal, setShowLoginModal] = useState(false);
-  console.log('showww', showLoginModal);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
-  console.log('credentials', credentials);
+  // register
+  // register credentials
+  const [registerCredentials, setRegisterCredentials] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    zipCode: '',
+    password: '',
+  });
+
   // spinner
   const [showSpinner, setShowSpinner] = useState(false);
   // error message
@@ -25,8 +36,8 @@ function AppProvider({ children }) {
 
   /* eslint-disable */
   const store = {
-    credentials,
-    setCredentials,
+    loginCredentials,
+    setLoginCredentials,
     user,
     setUser,
     showSpinner,
@@ -35,6 +46,10 @@ function AppProvider({ children }) {
     setErrorMessage,
     showLoginModal,
     setShowLoginModal,
+    registerCredentials,
+    setRegisterCredentials,
+    showRegisterModal,
+    setShowRegisterModal,
   };
 
   const storeForProvider = useMemo(() => store, [store]);

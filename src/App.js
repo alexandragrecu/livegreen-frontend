@@ -3,6 +3,7 @@ import React, { Fragment, useEffect } from 'react';
 // import components
 import Header from './components/header/header.component';
 import Login from './components/login/login.component';
+import Register from './components/register/register.component';
 
 // import css files
 import './assets/css/style.css';
@@ -27,6 +28,7 @@ const App = () => {
         <Header />
       </Sticky>
       <Login />
+      <Register />
     </Fragment>
   );
 };

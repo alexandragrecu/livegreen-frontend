@@ -46,3 +46,23 @@ export const validateFieldsForLogin = (email, password) => {
 
   return false;
 };
+
+// register form
+
+export const passwordsMatch = (password, confirmPassword) => {
+  return password.localeCompare(confirmPassword);
+};
+
+export const validateFieldsForRegister = (credentials, confirmPassword) => {
+  if (
+    credentials.firstName.length !== 0 &&
+    credentials.lastName.length !== 0 &&
+    validateEmail(credentials.email) &&
+    credentials.zipCode !== 0 &&
+    passwordsMatch(credentials.password, confirmPassword) === 0 &&
+    validatePassword(credentials.password)
+  ) {
+    return true;
+  }
+  return false;
+};

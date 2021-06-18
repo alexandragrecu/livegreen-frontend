@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext, useEffect } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 
 // context
 import { AppContext } from './../../context/appContext';
@@ -21,8 +21,8 @@ import { doLogin } from '../../helpers/authenticate.utils';
 const Login = () => {
   // get data from context
   const {
-    credentials,
-    setCredentials,
+    loginCredentials,
+    setLoginCredentials,
     user,
     setUser,
     showSpinner,
@@ -39,7 +39,7 @@ const Login = () => {
     button: false,
   });
 
-  // checking if user enters credentials (this function is called for onFocus and onBlur events of inputs)
+  // checking if user enters loginCredentials (this function is called for onFocus and onBlur events of inputs)
   const isTyping = (key, value) => {
     const typingAux = { ...typing };
     typingAux[key] = value;
@@ -47,11 +47,11 @@ const Login = () => {
     setTyping(typingAux);
   };
 
-  // function called for updating credentials
-  const getCredentials = (key, value) => {
-    const credentialsAux = { ...credentials };
-    credentialsAux[key] = value;
-    setCredentials(credentialsAux);
+  // function called for updating loginCredentials
+  const getLoginCredentials = (key, value) => {
+    const LoginCredentialsAux = { ...loginCredentials };
+    LoginCredentialsAux[key] = value;
+    setLoginCredentials(LoginCredentialsAux);
     setErrorMessage(false);
   };
 
@@ -60,8 +60,10 @@ const Login = () => {
     e.preventDefault();
     setTyping({ ...typing, button: true });
 
-    if (validateFieldsForLogin(credentials.email, credentials.password)) {
-      await doLogin(credentials, setUser, setShowSpinner, setErrorMessage);
+    if (
+      validateFieldsForLogin(loginCredentials.email, loginCredentials.password)
+    ) {
+      await doLogin(loginCredentials, setUser, setShowSpinner, setErrorMessage);
     }
   };
 
@@ -80,15 +82,21 @@ const Login = () => {
                   <Input
                     type="email"
                     name="email"
-                    value={credentials.email.length ? credentials.email : ''}
+                    value={
+                      loginCredentials.email.length
+                        ? loginCredentials.email
+                        : ''
+                    }
                     placeholder="Your email address:"
                     onFocus={() => isTyping('email', true)}
                     onBlur={() => isTyping('email', false)}
-                    onChange={(e) => getCredentials('email', e.target.value)}
+                    onChange={(e) =>
+                      getLoginCredentials('email', e.target.value)
+                    }
                   />
-                  {credentials.email.length !== 0 &&
+                  {loginCredentials.email.length !== 0 &&
                     !typing['email'] &&
-                    !validateEmail(credentials.email) && (
+                    !validateEmail(loginCredentials.email) && (
                       <ErrorMessage message="Please enter a valid email address!" />
                     )}
                 </div>
@@ -97,16 +105,20 @@ const Login = () => {
                     type="password"
                     name="password"
                     value={
-                      credentials.password.length ? credentials.password : ''
+                      loginCredentials.password.length
+                        ? loginCredentials.password
+                        : ''
                     }
                     placeholder="Password:"
                     onFocus={() => isTyping('password', true)}
                     onBlur={() => isTyping('password', false)}
-                    onChange={(e) => getCredentials('password', e.target.value)}
+                    onChange={(e) =>
+                      getLoginCredentials('password', e.target.value)
+                    }
                   />
-                  {credentials.password.length !== 0 &&
+                  {loginCredentials.password.length !== 0 &&
                     !typing['password'] &&
-                    validatePassword(credentials.password) !== true && (
+                    validatePassword(loginCredentials.password) !== true && (
                       <ErrorMessage message="Please enter a valid password. It must contain at least 6 characters, 1 upper case, 1 number and 1 special character!" />
                     )}
                   {typing['password'] && (
@@ -127,8 +139,8 @@ const Login = () => {
                   <br />
                   {typing['button'] &&
                     !validateFieldsForLogin(
-                      credentials.email,
-                      credentials.password
+                      loginCredentials.email,
+                      loginCredentials.password
                     ) && (
                       <ErrorMessage message="Please complete all fields correctly." />
                     )}

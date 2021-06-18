@@ -15,3 +15,16 @@ export const login = async (params) => {
     return error.response;
   }
 };
+
+export const register = async (params) => {
+  try {
+    let response = await axios({
+      method: 'post',
+      url: `${API_URL}/users/signup`,
+      data: params,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
