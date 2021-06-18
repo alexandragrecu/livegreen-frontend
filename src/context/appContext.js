@@ -7,7 +7,9 @@ const AppContext = createContext();
 
 function AppProvider({ children }) {
   const [user, setUser] = useLocalStorage('user', false);
-  console.log(typeof setUser);
+
+  const [token, setToken] = useLocalStorage('token', null);
+  console.log('TOKEN', token);
 
   // login
   // login credentials
@@ -50,6 +52,8 @@ function AppProvider({ children }) {
     setRegisterCredentials,
     showRegisterModal,
     setShowRegisterModal,
+    token,
+    setToken,
   };
 
   const storeForProvider = useMemo(() => store, [store]);

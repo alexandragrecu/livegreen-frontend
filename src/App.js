@@ -1,4 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
+
+// context
+import { AppContext } from './context/appContext';
 
 // import components
 import Header from './components/header/header.component';
@@ -14,6 +17,13 @@ import Sticky from 'react-sticky-el';
 import WOW from 'wowjs';
 
 const App = () => {
+  const { token } = useContext(AppContext);
+
+  useEffect(() => {
+    if (token !== null || token !== undefined) {
+      window.localStorage.setItem('token', JSON.stringify(token));
+    }
+  }, [token]);
   useEffect(() => {
     new WOW.WOW({
       animateClass: 'animated',

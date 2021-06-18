@@ -30,6 +30,7 @@ const Register = () => {
     showRegisterModal,
     setShowRegisterModal,
     errorMessage,
+    setToken,
   } = useContext(AppContext);
 
   console.log('registerCredentials', registerCredentials);
@@ -69,7 +70,13 @@ const Register = () => {
     setTyping({ ...typing, registerButton: true });
 
     if (validateFieldsForRegister(registerCredentials, confirmPassword)) {
-      doRegister(registerCredentials, setUser, setShowSpinner, setErrorMessage);
+      doRegister(
+        registerCredentials,
+        setUser,
+        setShowSpinner,
+        setErrorMessage,
+        setToken
+      );
     }
   };
 

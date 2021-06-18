@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getToken } from '../helpers/helpers.utils';
 
 // constants
 import { API_URL } from './../constants/constants';
@@ -22,6 +23,26 @@ export const register = async (params) => {
       method: 'post',
       url: `${API_URL}/users/signup`,
       data: params,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+export const logout = async () => {
+  const token = getToken();
+  console.log('TOKEEEN', token);
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  try {
+    let response = await axios({
+      method: 'get',
+      url: `${API_URL}/users/logout`,
+      config,
     });
     return response;
   } catch (error) {

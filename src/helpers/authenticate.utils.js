@@ -5,15 +5,17 @@ export const doLogin = async (
   loginCredentials,
   setUser,
   setShowSpinner,
-  setErrorMessage
+  setErrorMessage,
+  setToken
 ) => {
   setShowSpinner(true);
 
   let response = await authentication.login(loginCredentials);
-
+  console.log('RESPONSE', response);
   if (response) {
     if (response.status === 200 && response.data.status === 'success') {
       setUser(response.data.data.user);
+      setToken(response.data.token);
     } else if (response.status === 401) {
       setErrorMessage('Incorrect email or password.');
     } else if (response.status === 400) {
@@ -23,16 +25,17 @@ export const doLogin = async (
     }
   }
 
-  setTimeout(() => {
-    setShowSpinner(false);
-  }, 1000);
+  // setTimeout(() => {
+  // }, 1000);
+  setShowSpinner(false);
 };
 
 export const doRegister = async (
   registerCredentials,
   setUser,
   setShowSpinner,
-  setErrorMessage
+  setErrorMessage,
+  setToken
 ) => {
   setShowSpinner(true);
 
@@ -41,6 +44,7 @@ export const doRegister = async (
   if (response) {
     if (response.status === 201 && response.data.status === 'success') {
       setUser(response.data.data.user);
+      setToken(response.data.token);
     } else if (response.status === 400 && response.data.status === 'fail') {
       setErrorMessage(response.data.message);
     } else {
@@ -49,4 +53,29 @@ export const doRegister = async (
   }
 
   setShowSpinner(false);
+};
+
+export const doLogout = async (
+  setShowSpinner,
+  setUser,
+  setToken,
+  setShowLoginModal,
+  setShowRegisterModal
+) => {
+  setShowSpinner(true);
+  let response = await authentication.logout();
+  console.log('LOGOUT', response);
+
+  if (response) {
+    if (response.status === 200 && response.data.status === 'success') {
+      setUser(false);
+      setToken(undefined);
+      setShowLoginModal(false);
+      setShowRegisterModal(false);
+    }
+  }
+
+  setTimeout(() => {
+    setShowSpinner(false);
+  }, 1000);
 };

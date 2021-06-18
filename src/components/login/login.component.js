@@ -31,6 +31,7 @@ const Login = () => {
     setErrorMessage,
     showLoginModal,
     setShowLoginModal,
+    setToken,
   } = useContext(AppContext);
 
   const [typing, setTyping] = useState({
@@ -63,7 +64,13 @@ const Login = () => {
     if (
       validateFieldsForLogin(loginCredentials.email, loginCredentials.password)
     ) {
-      await doLogin(loginCredentials, setUser, setShowSpinner, setErrorMessage);
+      await doLogin(
+        loginCredentials,
+        setUser,
+        setShowSpinner,
+        setErrorMessage,
+        setToken
+      );
     }
   };
 
