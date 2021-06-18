@@ -25,8 +25,6 @@ export const doLogin = async (
     }
   }
 
-  // setTimeout(() => {
-  // }, 1000);
   setShowSpinner(false);
 };
 
