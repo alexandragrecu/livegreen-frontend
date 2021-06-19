@@ -10,6 +10,7 @@ import Footer from './components/footer/footer.component';
 
 // import screens
 import Home from './screens/home/home.screen';
+import GetPoints from './screens/getPoints/getPoints.screen';
 
 // import css files
 import './assets/css/style.css';
@@ -50,16 +51,20 @@ const App = () => {
 
   return (
     <Fragment>
-      <Sticky stickyStyle={affix}>
-        <Header
-          executeScroll={executeScroll}
-          howRef={howRef}
-          rewardsRef={rewardsRef}
-          aboutRef={aboutRef}
-        />
-      </Sticky>
       <Router>
+        <Sticky stickyStyle={affix}>
+          <Header
+            executeScroll={executeScroll}
+            howRef={howRef}
+            rewardsRef={rewardsRef}
+            aboutRef={aboutRef}
+          />
+        </Sticky>
+
         <Switch>
+          <Route path="/get-points">
+            <GetPoints />
+          </Route>
           <Route path="/">
             <Home howRef={howRef} rewardsRef={rewardsRef} aboutRef={aboutRef} />
           </Route>

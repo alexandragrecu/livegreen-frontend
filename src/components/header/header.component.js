@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // import logo
 import logo from './../../assets/images/logo.png';
@@ -29,7 +29,7 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
         <div className="row">
           <div className="col-md-3 col-xs-12">
             <div className="logo-area">
-              <a href="#/">
+              <a href="/home">
                 {' '}
                 <img src={logo} alt="logo Live Green" />
               </a>
@@ -121,7 +121,8 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
               <ul className="header-menu-center">
                 <li>
                   {' '}
-                  <a href="#/">Get Points</a>{' '}
+                  {/* <a href="#/">Get Points</a>{' '} */}
+                  <Link to="/get-points">Get Points</Link>
                 </li>
                 <li>
                   {' '}

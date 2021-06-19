@@ -1,5 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 
+import { Link } from 'react-router-dom';
+
 // context
 import { AppContext } from './../../context/appContext';
 
@@ -257,7 +259,8 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                   </div>
                   <div className="info-section-1-logged">
                     <div className="cta-section">
-                      <a href="#/">Scan a product</a>
+                      {/* <a href="#/">Scan a product</a> */}
+                      <Link to="/get-points">Scan a product</Link>
                     </div>
                     <div className="disclaimer-points">
                       Your total points: {user.totalPoints}
