@@ -6,6 +6,7 @@ import { AppContext } from './context/appContext';
 
 // import components
 import Header from './components/header/header.component';
+import Footer from './components/footer/footer.component';
 
 // import screens
 import Home from './screens/home/home.screen';
@@ -18,7 +19,7 @@ import Sticky from 'react-sticky-el';
 // calling 'wowjs'
 import WOW from 'wowjs';
 
-// import style
+// import style for sticky navbar
 import { affix } from './assets/js/style';
 
 const App = () => {
@@ -64,8 +65,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
-      {/* <Login /> */}
-      {/* <Register /> */}
+      <Footer />
     </Fragment>
   );
 };
