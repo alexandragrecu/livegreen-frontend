@@ -70,7 +70,7 @@ export const doLogout = async (
     }
   }
 
-  setTimeout(() => {
-    setShowSpinner(false);
-  }, 1000);
+  // setTimeout(() => {
+  setShowSpinner(false);
+  // }, 1000);
 };

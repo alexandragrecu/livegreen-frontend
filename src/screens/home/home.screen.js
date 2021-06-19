@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useRef } from 'react';
 
 // context
 import { AppContext } from './../../context/appContext';
@@ -16,8 +16,9 @@ import salata1 from './../../assets/images/salata-1.png';
 import salata2 from './../../assets/images/salata-2.png';
 import metrou from './../../assets/images/metrou.png';
 
-const Home = () => {
+const Home = ({ howRef, rewardsRef, aboutRef }) => {
   const { user, showSpinner } = useContext(AppContext);
+
   return (
     <Fragment>
       {/* Login and Register components are just some modals that appear when you click their buttons on Homepage, they don't appear anywhere else*/}
@@ -52,6 +53,7 @@ const Home = () => {
             </div>
           </div>
           <div
+            ref={howRef}
             className="section-2-homepage wow fadeInUp"
             data-wow-duration="2s"
           >
@@ -122,6 +124,7 @@ const Home = () => {
             </div>
           </div>
           <div
+            ref={rewardsRef}
             className="section-4-homepage wow fadeInUp"
             data-wow-duration="2s"
           >
@@ -156,7 +159,7 @@ const Home = () => {
             className="section-5-homepage wow fadeInUp"
             data-wow-duration="2s"
           >
-            <div className="container">
+            <div ref={aboutRef} className="container">
               <h2>About us</h2>
               <div className="row">
                 <div className="col-md-5 col-xs-12">

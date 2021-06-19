@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useContext } from 'react';
+import React, { Fragment, useEffect, useContext, useRef } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // context
@@ -24,6 +24,16 @@ import { affix } from './assets/js/style';
 const App = () => {
   const { token } = useContext(AppContext);
 
+  // refs
+  // how-it-works, get-rewards, about-us ref
+  const howRef = useRef(null);
+  const rewardsRef = useRef(null);
+  const aboutRef = useRef(null);
+
+  const executeScroll = (ref) => {
+    ref.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
   useEffect(() => {
     if (token !== null || token !== undefined) {
       window.localStorage.setItem('token', JSON.stringify(token));
@@ -40,12 +50,17 @@ const App = () => {
   return (
     <Fragment>
       <Sticky stickyStyle={affix}>
-        <Header />
+        <Header
+          executeScroll={executeScroll}
+          howRef={howRef}
+          rewardsRef={rewardsRef}
+          aboutRef={aboutRef}
+        />
       </Sticky>
       <Router>
         <Switch>
           <Route path="/">
-            <Home />
+            <Home howRef={howRef} rewardsRef={rewardsRef} aboutRef={aboutRef} />
           </Route>
         </Switch>
       </Router>

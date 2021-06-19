@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 // import { Link } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ import { showMobileMenu } from '../../helpers/header.utils';
 import { AppContext } from './../../context/appContext';
 import { doLogout } from '../../helpers/authenticate.utils';
 
-const Header = () => {
+const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
   const {
     setShowLoginModal,
     setShowRegisterModal,
@@ -21,6 +21,8 @@ const Header = () => {
     setUser,
     setToken,
   } = useContext(AppContext);
+
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <header>
       <div className="container">
@@ -35,16 +37,18 @@ const Header = () => {
           </div>
           {!user && (
             <div className="col-md-6 hidden-sm hidden-xs col-xs-12">
+              {/* console.log("AAA", typeof) */}
+              {console.log('AAAAA', typeof executeScroll)}
               <ul className="header-menu-center">
-                <li>
+                <li onClick={() => executeScroll(howRef)}>
                   {' '}
                   <a href="#/">How it works</a>{' '}
                 </li>
-                <li>
+                <li onClick={() => executeScroll(rewardsRef)}>
                   {' '}
-                  <a href="get-reward.html">Get rewards</a>{' '}
+                  <a href="#/">Get rewards</a>{' '}
                 </li>
-                <li>
+                <li onClick={() => executeScroll(aboutRef)}>
                   {' '}
                   <a href="#/">About us</a>{' '}
                 </li>
@@ -133,27 +137,35 @@ const Header = () => {
                 </li>
                 <li className="dropdown">
                   {' '}
-                  <button className="dropbtn" href="#/">
+                  <button
+                    className="dropbtn"
+                    href="#/"
+                    onClick={() =>
+                      showMenu ? setShowMenu(false) : setShowMenu(true)
+                    }
+                  >
                     Menu
                   </button>
-                  <ul className="dropdown-content">
-                    <li>
-                      {' '}
-                      <a href="#/"> Your profile</a>{' '}
-                    </li>
-                    <li>
-                      {' '}
-                      <a href="#/"> Account settings</a>{' '}
-                    </li>
-                    <li>
-                      {' '}
-                      <a href="#/"> Contact us</a>{' '}
-                    </li>
-                    <li>
-                      {' '}
-                      <a href="#/"> About us</a>{' '}
-                    </li>
-                  </ul>
+                  {showMenu && (
+                    <ul className="dropdown-content">
+                      <li>
+                        {' '}
+                        <a href="#/"> Your profile</a>{' '}
+                      </li>
+                      <li>
+                        {' '}
+                        <a href="#/"> Account settings</a>{' '}
+                      </li>
+                      <li>
+                        {' '}
+                        <a href="#/"> Contact us</a>{' '}
+                      </li>
+                      <li>
+                        {' '}
+                        <a href="#/"> About us</a>{' '}
+                      </li>
+                    </ul>
+                  )}
                 </li>
                 <li
                   onClick={() =>
