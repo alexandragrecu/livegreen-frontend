@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useRef } from 'react';
+import React, { Fragment, useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 

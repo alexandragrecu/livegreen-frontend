@@ -2,11 +2,9 @@ import React, { useState, Fragment } from 'react';
 
 const Arrow = () => {
   const [visible, setVisible] = useState(false);
-  console.log('VISIBLE', visible);
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
-    console.log('SCROLLED', scrolled);
     if (scrolled > 300) {
       setVisible(true);
     } else if (scrolled <= 300) {
