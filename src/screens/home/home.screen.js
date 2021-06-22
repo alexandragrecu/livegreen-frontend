@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useRef } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import { AppContext } from './../../context/appContext';
 // import components
 import Login from './../../components/login/login.component';
 import Register from './../../components/register/register.component';
+import Arrow from './../../components/arrow/arrow.component';
 
 // import images
 import image1 from './../../assets/images/Image_1.png';
@@ -343,6 +344,7 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
           </div>
         </div>
       )}
+      <Arrow />
     </Fragment>
   );
 };

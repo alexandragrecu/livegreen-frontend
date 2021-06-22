@@ -11,6 +11,10 @@ function AppProvider({ children }) {
   const [token, setToken] = useLocalStorage('token', null);
   console.log('TOKEN', token);
 
+  // scroll event
+  const [scroll, setScroll] = useState(false);
+  console.log('SCROLL', scroll);
+
   // login
   // login credentials
   const [loginCredentials, setLoginCredentials] = useState({
@@ -54,6 +58,8 @@ function AppProvider({ children }) {
     setShowRegisterModal,
     token,
     setToken,
+    scroll,
+    setScroll,
   };
 
   const storeForProvider = useMemo(() => store, [store]);

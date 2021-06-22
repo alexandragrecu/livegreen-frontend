@@ -24,7 +24,7 @@ import WOW from 'wowjs';
 import { affix } from './assets/js/style';
 
 const App = () => {
-  const { token } = useContext(AppContext);
+  const { token, setScroll } = useContext(AppContext);
 
   // refs
   // how-it-works, get-rewards, about-us ref
@@ -34,6 +34,10 @@ const App = () => {
 
   const executeScroll = (ref) => {
     ref.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  window.onscroll = function (e) {
+    setScroll(true);
   };
 
   useEffect(() => {
