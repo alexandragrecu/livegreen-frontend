@@ -8,6 +8,7 @@ import { API_URL } from './../constants/constants';
 // scan product
 export const scanProduct = async (params) => {
   const token = getToken();
+  console.log('PARRAAAAMS', params);
 
   axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 

@@ -43,21 +43,11 @@ const GetPoints = () => {
     scanProduct(number, setShowSpinner, setProduct, setErrorMessage);
   };
 
-  const updateUserPoints = () => {
-    getUser(setUser);
-  };
-
   useEffect(() => {
     if (barCode) {
       searchProduct(barCode);
     }
   }, [barCode]);
-
-  useEffect(() => {
-    if (product) {
-      updateUserPoints();
-    }
-  }, [product]);
 
   return (
     <div className="main-content">

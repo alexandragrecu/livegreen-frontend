@@ -7,8 +7,8 @@ export const scanProduct = async (
   setErrorMessage
 ) => {
   setShowSpinner(true);
-
   const data = { qrCode: barCode };
+  console.log("DATAaaa", data);
   let response = await productService.scanProduct(data);
   console.log('RESPONSE PRODUNCT', response);
 
