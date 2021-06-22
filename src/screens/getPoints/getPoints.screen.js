@@ -7,26 +7,57 @@ React component built in Typescript to provide a webcam-based barcode scanner us
 
 import React, { useContext, useState, useEffect } from 'react';
 
+// bar-code-scanner
 import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
+
+// utils functions
+import { scanProduct } from '../../helpers/products.utils';
+import { getUser } from '../../helpers/user.utils';
+
+// components
+import Spinner from './../../components/spinner/spinner.component';
 
 // context
 import { AppContext } from './../../context/appContext';
 
 const GetPoints = () => {
-  const { user } = useContext(AppContext);
+  const {
+    user,
+    setUser,
+    showSpinner,
+    setShowSpinner,
+    errorMessage,
+    setErrorMessage,
+  } = useContext(AppContext);
+  console.log('showSpinner', showSpinner);
   const [barCode, setBarCode] = useState(false);
   const [barCodeNumber, setBarCodeNumber] = useState(false);
+  const [product, setProduct] = useState(false);
+  console.log('PRODUCT', product);
   console.log('baaarCOdeNumber', barCodeNumber);
+  const [totalPoints, setTotalPoints] = useState(false);
 
-  const getBarCodeNumber = (number) => {
+  const searchProduct = (number) => {
     setBarCodeNumber(number);
+    setProduct(false);
+    scanProduct(number, setShowSpinner, setProduct, setErrorMessage);
+  };
+
+  const updateUserPoints = () => {
+    getUser(setUser);
   };
 
   useEffect(() => {
     if (barCode) {
-      getBarCodeNumber(barCode);
+      searchProduct(barCode);
     }
   }, [barCode]);
+
+  useEffect(() => {
+    if (product) {
+      updateUserPoints();
+    }
+  }, [product]);
 
   return (
     <div className="main-content">
@@ -45,28 +76,32 @@ const GetPoints = () => {
               <br />
               <br />
               <br />
-              <div className="box-add-to-scan">
-                <div className="title-product">Product: Sticla cola</div>
+              {!showSpinner && product && (
+                <div className="box-add-to-scan">
+                  <div className="title-product">Product: {product.name}</div>
 
-                <div className="row">
-                  <div className="col-md-4 col-xs-4">
-                    Points:
-                    <br /> <span className="points-number">20</span>
-                  </div>
-                  <div className="col-md-8 col-xs-8">
-                    <button
-                      type="button"
-                      name="buttonaddproduct"
-                      className="buttonaddproduct"
-                    >
-                      Add points
-                    </button>
-                    <span className="hidden disclaimer-points-added">
-                      Points added!
-                    </span>
+                  <div className="row">
+                    <div className="col-md-4 col-xs-4">
+                      Points:
+                      <br />{' '}
+                      <span className="points-number">{product.points}</span>
+                    </div>
+                    <div className="col-md-8 col-xs-8">
+                      <button
+                        type="button"
+                        name="buttonaddproduct"
+                        className="buttonaddproduct"
+                      >
+                        Add points
+                      </button>
+                      <span className="hidden disclaimer-points-added">
+                        Points added!
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
+              {showSpinner && <Spinner />}
             </div>
             <div className="col-md-6 col-xs-12">
               <div className="scan-area">

@@ -1,4 +1,8 @@
 export const getToken = () => {
-  const token = window.localStorage.getItem('token');
-  return JSON.stringify(token);
+  let token = window.localStorage.getItem('token');
+  if (token !== null || token !== undefined) {
+    token = token.replace(/"/gi, '');
+    console.log('TJFH', token);
+  }
+  return token;
 };

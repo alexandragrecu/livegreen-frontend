@@ -41,11 +41,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (token !== null || token !== undefined) {
-      window.localStorage.setItem('token', JSON.stringify(token));
-    }
-  }, [token]);
-  useEffect(() => {
     new WOW.WOW({
       animateClass: 'animated',
       offset: 100,

@@ -48,3 +48,5 @@ export const logout = async () => {
     return error.response;
   }
 };
+
+// scan a product
