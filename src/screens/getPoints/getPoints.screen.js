@@ -33,9 +33,11 @@ const GetPoints = () => {
   const [product, setProduct] = useState(false);
   const [clickedBtn, setClickedBtn] = useState(false);
   const searchProduct = (number) => {
-    setBarCodeNumber(number);
-    setProduct(false);
-    scanProduct(number, setShowSpinner, setProduct, setErrorMessage);
+    if (number.localeCompare(barCodeNumber) !== 0) {
+      setBarCodeNumber(number);
+      setProduct(false);
+      scanProduct(number, setShowSpinner, setProduct, setErrorMessage);
+    }
   };
 
   /* eslint-disable */
