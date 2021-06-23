@@ -12,11 +12,10 @@ import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
 
 // utils functions
 import { scanProduct, updatePoints } from '../../helpers/products.utils';
-import { getUser } from '../../helpers/user.utils';
 
 // components
 import Spinner from './../../components/spinner/spinner.component';
-
+import ErrorMessage from './../../components/errorMessage/errorMessage.component';
 // context
 import { AppContext } from './../../context/appContext';
 
@@ -29,23 +28,23 @@ const GetPoints = () => {
     errorMessage,
     setErrorMessage,
   } = useContext(AppContext);
-  console.log('showSpinner', showSpinner);
   const [barCode, setBarCode] = useState(false);
   const [barCodeNumber, setBarCodeNumber] = useState(false);
   const [product, setProduct] = useState(false);
-  console.log('PRODUCT', product);
-  console.log('baaarCOdeNumber', barCodeNumber);
-  const [totalPoints, setTotalPoints] = useState(false);
-
+  const [clickedBtn, setClickedBtn] = useState(false);
   const searchProduct = (number) => {
     setBarCodeNumber(number);
     setProduct(false);
     scanProduct(number, setShowSpinner, setProduct, setErrorMessage);
   };
 
+  /* eslint-disable */
   useEffect(() => {
     if (barCode) {
       searchProduct(barCode);
+      setErrorMessage(false);
+      setClickedBtn(false);
+      setProduct(false);
     }
   }, [barCode]);
 
@@ -77,19 +76,29 @@ const GetPoints = () => {
                       <span className="points-number">{product.points}</span>
                     </div>
                     <div className="col-md-8 col-xs-8">
-                      <button
-                        type="button"
-                        name="buttonaddproduct"
-                        className="buttonaddproduct"
-                        onClick={() => {
-                          updatePoints(product.id, setShowSpinner, setUser);
-                        }}
-                      >
-                        Add points
-                      </button>
-                      <span className="hidden disclaimer-points-added">
-                        Points added!
-                      </span>
+                      {!clickedBtn && !errorMessage && (
+                        <button
+                          type="button"
+                          name="buttonaddproduct"
+                          className="buttonaddproduct"
+                          onClick={() => {
+                            updatePoints(
+                              product.id,
+                              setShowSpinner,
+                              setUser,
+                              setErrorMessage,
+                              setClickedBtn
+                            );
+                          }}
+                        >
+                          Add points
+                        </button>
+                      )}
+                      {clickedBtn && !errorMessage && (
+                        <span className=" disclaimer-points-added">
+                          Points added!
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -115,6 +124,9 @@ const GetPoints = () => {
               </div>
             </div>
           </div>
+          <br />
+          <br />
+          <ErrorMessage message={errorMessage} />
         </div>
       </div>
     </div>

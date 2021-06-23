@@ -24,7 +24,7 @@ import WOW from 'wowjs';
 import { affix } from './assets/js/style';
 
 const App = () => {
-  const { token, setScroll } = useContext(AppContext);
+  const { setScroll } = useContext(AppContext);
 
   // refs
   // how-it-works, get-rewards, about-us ref

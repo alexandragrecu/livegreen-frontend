@@ -13,7 +13,6 @@ function AppProvider({ children }) {
 
   // scroll event
   const [scroll, setScroll] = useState(false);
-  console.log('SCROLL', scroll);
 
   // login
   // login credentials

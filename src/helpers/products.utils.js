@@ -9,13 +9,10 @@ export const scanProduct = async (
 ) => {
   setShowSpinner(true);
   const data = { qrCode: barCode };
-  console.log('DATAaaa', data);
   let response = await productService.scanProduct(data);
-  console.log('RESPONSE PRODUNCT', response);
 
   if (response) {
     if (response.status === 200) {
-      console.log('SSSS', response.data);
       const product = {
         name: response.data.data.name,
         points: response.data.data.points,
@@ -24,27 +21,39 @@ export const scanProduct = async (
       };
       setProduct(product);
     } else if (response.status === 401 || response.status === 404) {
-      setErrorMessage(response.data.message);
-      setProduct('No product!');
+      setErrorMessage(
+        'We cannot find this product in our database. Please search for it in Products Section.'
+      );
     } else {
       setErrorMessage('An error occured. Please try again later!');
-      setProduct('No product!');
     }
   }
 
   setShowSpinner(false);
 };
 
-export const updatePoints = async (id, setShowSpinner, setUser) => {
+export const updatePoints = async (
+  id,
+  setShowSpinner,
+  setUser,
+  setErrorMessage,
+  setClickedBtn
+) => {
   setShowSpinner(true);
-  console.log('ID', id);
+  // id = '5fc411b283250e14b4a8b9c4';
   let response = await productService.updatePointsAfterScan({ id });
-  console.log(response);
   if (response) {
     if (response.status === 200) {
       let userUpdated = await userOptions.getUser(setUser);
       console.log('userUpdated', userUpdated);
+    } else if (response.status === 404) {
+      setErrorMessage(
+        'Product not found! Please try again to scan the product!'
+      );
+    } else {
+      setErrorMessage('An error occured! Please try again later!');
     }
   }
   setShowSpinner(false);
+  setClickedBtn(true);
 };

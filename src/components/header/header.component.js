@@ -37,8 +37,6 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
           </div>
           {!user && (
             <div className="col-md-6 hidden-sm hidden-xs col-xs-12">
-              {/* console.log("AAA", typeof) */}
-              {console.log('AAAAA', typeof executeScroll)}
               <ul className="header-menu-center">
                 <li onClick={() => executeScroll(howRef)}>
                   {' '}
