@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 // import logo
 import logo from './../../assets/images/logo.png';
@@ -23,6 +23,20 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
   } = useContext(AppContext);
 
   const [showMenu, setShowMenu] = useState(false);
+
+  const history = useHistory();
+
+  const logout = () => {
+    doLogout(
+      setShowSpinner,
+      setUser,
+      setToken,
+      setShowLoginModal,
+      setShowRegisterModal
+    );
+
+    history.push('/home');
+  };
   return (
     <header>
       <div className="container">
@@ -166,17 +180,7 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
                     </ul>
                   )}
                 </li>
-                <li
-                  onClick={() =>
-                    doLogout(
-                      setShowSpinner,
-                      setUser,
-                      setToken,
-                      setShowLoginModal,
-                      setShowRegisterModal
-                    )
-                  }
-                >
+                <li onClick={logout}>
                   {' '}
                   <a className="logout" href="#/">
                     Logout
@@ -233,11 +237,7 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
                           </li>
                         </ul>
                       </li>
-                      <li
-                        onClick={() =>
-                          doLogout(setShowSpinner, setUser, setToken)
-                        }
-                      >
+                      <li onClick={logout}>
                         {' '}
                         <a className="logout" href="#/">
                           Logout

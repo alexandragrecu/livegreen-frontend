@@ -73,4 +73,5 @@ export const doLogout = async (
   // setTimeout(() => {
   setShowSpinner(false);
   // }, 1000);
+  window.location.reload();
 };
