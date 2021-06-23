@@ -11,7 +11,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
 
 // utils functions
-import { scanProduct } from '../../helpers/products.utils';
+import { scanProduct, updatePoints } from '../../helpers/products.utils';
 import { getUser } from '../../helpers/user.utils';
 
 // components
@@ -81,6 +81,9 @@ const GetPoints = () => {
                         type="button"
                         name="buttonaddproduct"
                         className="buttonaddproduct"
+                        onClick={() => {
+                          updatePoints(product.id, setShowSpinner, setUser);
+                        }}
                       >
                         Add points
                       </button>

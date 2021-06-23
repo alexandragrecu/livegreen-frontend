@@ -1,4 +1,5 @@
 import * as productService from './../services/products.service';
+import * as userOptions from './user.utils';
 
 export const scanProduct = async (
   barCode,
@@ -8,7 +9,7 @@ export const scanProduct = async (
 ) => {
   setShowSpinner(true);
   const data = { qrCode: barCode };
-  console.log("DATAaaa", data);
+  console.log('DATAaaa', data);
   let response = await productService.scanProduct(data);
   console.log('RESPONSE PRODUNCT', response);
 
@@ -19,6 +20,7 @@ export const scanProduct = async (
         name: response.data.data.name,
         points: response.data.data.points,
         barCode: response.data.data.qrCode,
+        id: response.data.data._id,
       };
       setProduct(product);
     } else if (response.status === 401 || response.status === 404) {
@@ -30,5 +32,19 @@ export const scanProduct = async (
     }
   }
 
+  setShowSpinner(false);
+};
+
+export const updatePoints = async (id, setShowSpinner, setUser) => {
+  setShowSpinner(true);
+  console.log('ID', id);
+  let response = await productService.updatePointsAfterScan({ id });
+  console.log(response);
+  if (response) {
+    if (response.status === 200) {
+      let userUpdated = await userOptions.getUser(setUser);
+      console.log('userUpdated', userUpdated);
+    }
+  }
   setShowSpinner(false);
 };
