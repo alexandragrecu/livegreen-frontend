@@ -13,7 +13,7 @@ const color = '#6CC57C';
 
 const Spinner = (props) => {
   return (
-    <div className="backgroundSpinner">
+    <div className={props.className}>
       <CircleLoader
         color={color}
         loading={props.loading}

@@ -8,6 +8,8 @@ import img from './../../assets/images/salata-png.png';
 
 // import components
 import ProductModal from '../../components/productModal/productModal.component.';
+import Spinner from '../../components/spinner/spinner.component';
+
 import { searchProduct, getProducts } from '../../helpers/products.utils';
 import { getSort } from '../../helpers/helpers.utils';
 
@@ -54,7 +56,8 @@ const Products = () => {
 
   const [productName, setProductName] = useState('');
 
-  const searchProductAfterName = () => {
+  const searchProductAfterName = (e) => {
+    e.preventDefault();
     searchProduct(
       { name: productName },
       setProducts,
@@ -67,7 +70,13 @@ const Products = () => {
   const sort = (field, order) => {
     const params = getSort(field, order);
     setProducts(
-      getProducts(params, setProducts, setNrProducts, setErrorMessage)
+      getProducts(
+        params,
+        setProducts,
+        setNrProducts,
+        setErrorMessage,
+        setShowSpinner
+      )
     );
   };
 
@@ -122,7 +131,7 @@ const Products = () => {
                     type="submit"
                     name=""
                     className="submit-search-product"
-                    onClick={searchProductAfterName}
+                    onClick={(e) => searchProductAfterName(e)}
                   />
                 </form>
                 <form className="filter-product" action="" method="">
@@ -177,54 +186,59 @@ const Products = () => {
             </div>
           </div>
         </div>
+
         <div className="section-3-products wow fadeInUp" data-wow-duration="2s">
-          <div className="container">
-            <div className="row">
-              <div className="listing-products-page">
-                {products.length &&
-                  products.slice(0, nrProd).map((product) => (
-                    <div key={product._id} className="col-md-4 col-xs-12">
-                      <div className="box-single-product">
-                        <img src={img} alt="" />
-                        <h4>{product.name}</h4>
-                        <div className="info-product-single">
-                          <div className="row">
-                            <div className="col-md-6 col-xs-6">
-                              <strong className="number-info-points-single">
-                                {product.points}
-                              </strong>
-                              <p>Points</p>
-                            </div>
-                            <div className="col-md-6 col-xs-6">
-                              <strong className="gramaj">
-                                {' '}
-                                <span>{product.weight}</span> g
-                              </strong>
-                              <p>Weight</p>
+          {!showSpinner ? (
+            <div className="container">
+              <div className="row">
+                <div className="listing-products-page">
+                  {products.length &&
+                    products.slice(0, nrProd).map((product) => (
+                      <div key={product._id} className="col-md-4 col-xs-12">
+                        <div className="box-single-product">
+                          <img src={img} alt="" />
+                          <h4>{product.name}</h4>
+                          <div className="info-product-single">
+                            <div className="row">
+                              <div className="col-md-6 col-xs-6">
+                                <strong className="number-info-points-single">
+                                  {product.points}
+                                </strong>
+                                <p>Points</p>
+                              </div>
+                              <div className="col-md-6 col-xs-6">
+                                <strong className="gramaj">
+                                  {' '}
+                                  <span>{product.weight}</span> g
+                                </strong>
+                                <p>Weight</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="cta-to-product">
-                          <a href="#/" onClick={() => handleClick(product)}>
-                            <i
-                              className="fa fa-arrow-right"
-                              aria-hidden="true"
-                            ></i>
-                          </a>
+                          <div className="cta-to-product">
+                            <a href="#/" onClick={() => handleClick(product)}>
+                              <i
+                                className="fa fa-arrow-right"
+                                aria-hidden="true"
+                              ></i>
+                            </a>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                </div>
               </div>
+              {console.log('displayBTN', displayBtn)}
+              {displayBtn && nrProducts && (
+                <a href="#/" onClick={handleLoadMore} id="seeMoreProducts">
+                  Load More Products
+                </a>
+              )}
             </div>
-            {console.log('displayBTN', displayBtn)}
-            {displayBtn && nrProducts && (
-              <a href="#/" onClick={handleLoadMore} id="seeMoreProducts">
-                Load More Products
-              </a>
-            )}
-          </div>
+          ) : (
+            <Spinner className="spinner" />
+          )}
         </div>
       </div>
       {showModal && (

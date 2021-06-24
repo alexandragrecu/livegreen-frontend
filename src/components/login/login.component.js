@@ -9,6 +9,9 @@ import ErrorMessage from './../errorMessage/errorMessage.component';
 import Button from './../button/button.component';
 import Spinner from './../spinner/spinner.component';
 
+// style for spinner
+import { loginStyle } from './../../assets/css/spinner';
+
 // helpers
 import {
   validatePassword,
@@ -76,7 +79,9 @@ const Login = () => {
 
   return (
     <Fragment>
-      {showSpinner ? <Spinner /> : null}
+      {showSpinner ? (
+        <Spinner css={loginStyle} className="backgroundSpinner" />
+      ) : null}
       {!showSpinner && !user && showLoginModal && (
         <div id="myModallogin" className="modalLogin">
           <div className="modal-content">

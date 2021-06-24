@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const login = css`
+export const loginStyle = css`
   position: absolute;
   top: 0;
   bottom: 0;

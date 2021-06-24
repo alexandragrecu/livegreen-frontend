@@ -1653,6 +1653,12 @@ footer ul li a:hover {
   margin-bottom: 30px;
 }
 
+.spinner {
+  width: 10%;
+  height: 300px;
+  margin: 0 auto;
+}
+
 @media screen and (min-width: 992px) {
   .search-product,
   .filter-product {

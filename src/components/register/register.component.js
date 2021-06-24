@@ -9,6 +9,9 @@ import ErrorMessage from './../errorMessage/errorMessage.component';
 import Button from './../button/button.component';
 import Spinner from './../spinner/spinner.component';
 
+// style for spinner
+import { loginStyle } from './../../assets/css/spinner';
+
 // util functions
 import {
   passwordsMatch,
@@ -79,7 +82,9 @@ const Register = () => {
 
   return (
     <Fragment>
-      {showSpinner ? <Spinner /> : null}
+      {showSpinner ? (
+        <Spinner css={loginStyle} className="backgroundSpinner" />
+      ) : null}
       {!showSpinner && !user && showRegisterModal && (
         <div id="myModalregister" className="modalLogin">
           <div className="modal-content">

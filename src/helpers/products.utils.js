@@ -62,8 +62,11 @@ export const getProducts = async (
   params,
   setProducts,
   setNumProducts,
-  setErrorMessage
+  setErrorMessage,
+  setShowSpinner
 ) => {
+  console.log('type of setShowSpinner', setShowSpinner);
+  setShowSpinner(true);
   let response = await productService.getProducts(params);
   console.log('RESPONSE PRODUCTS', response);
   if (response) {
@@ -78,6 +81,7 @@ export const getProducts = async (
   } else {
     setErrorMessage('An error occured, please try again later!');
   }
+  setShowSpinner(false);
 };
 
 export const searchProduct = async (
