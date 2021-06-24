@@ -36,7 +36,7 @@ const App = () => {
   } = useContext(AppContext);
   // get products
   const getAllProducts = () => {
-    setProducts(getProducts(setProducts, setNrProducts, setErrorMessage));
+    setProducts(getProducts({}, setProducts, setNrProducts, setErrorMessage));
   };
 
   // refs

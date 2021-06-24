@@ -40,13 +40,14 @@ export const updatePointsAfterScan = async (params) => {
   }
 };
 
-export const getProducts = async () => {
+export const getProducts = async (params) => {
   setToken();
 
   try {
     let response = await axios({
       method: 'get',
       url: `${API_URL}/products`,
+      params,
     });
     return response;
   } catch (error) {

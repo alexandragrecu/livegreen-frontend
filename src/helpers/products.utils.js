@@ -59,11 +59,12 @@ export const updatePoints = async (
 };
 
 export const getProducts = async (
+  params,
   setProducts,
   setNumProducts,
   setErrorMessage
 ) => {
-  let response = await productService.getProducts();
+  let response = await productService.getProducts(params);
   console.log('RESPONSE PRODUCTS', response);
   if (response) {
     if (response.status === 200 && response.data.status === 'success') {

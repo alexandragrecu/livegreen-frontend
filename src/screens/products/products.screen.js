@@ -8,7 +8,8 @@ import img from './../../assets/images/salata-png.png';
 
 // import components
 import ProductModal from '../../components/productModal/productModal.component.';
-import { searchProduct } from '../../helpers/products.utils';
+import { searchProduct, getProducts } from '../../helpers/products.utils';
+import { getSort } from '../../helpers/helpers.utils';
 
 const Products = () => {
   const {
@@ -63,10 +64,19 @@ const Products = () => {
     );
   };
 
+  const sort = (field, order) => {
+    const params = getSort(field, order);
+    setProducts(
+      getProducts(params, setProducts, setNrProducts, setErrorMessage)
+    );
+  };
+
   useEffect(() => {
     if (products) {
       if (nrProd >= products.length) {
         setDisplayBtn(false);
+      } else {
+        setDisplayBtn(true);
       }
     }
   }, [products]);
@@ -127,9 +137,14 @@ const Products = () => {
                     <i
                       className="fa fa-arrow-up first-arrow"
                       aria-hidden="true"
+                      onClick={() => sort('points', 'asc')}
                     ></i>
 
-                    <i className="fa fa-arrow-down" aria-hidden="true"></i>
+                    <i
+                      className="fa fa-arrow-down"
+                      onClick={() => sort('points', 'desc')}
+                      aria-hidden="true"
+                    ></i>
                   </span>
 
                   <input
@@ -148,9 +163,14 @@ const Products = () => {
                     <i
                       className="fa fa-arrow-up first-arrow"
                       aria-hidden="true"
+                      onClick={() => sort('weight', 'asc')}
                     ></i>
 
-                    <i className="fa fa-arrow-down" aria-hidden="true"></i>
+                    <i
+                      className="fa fa-arrow-down"
+                      aria-hidden="true"
+                      onClick={() => sort('weight', 'desc')}
+                    ></i>
                   </span>
                 </form>
               </div>
@@ -198,6 +218,7 @@ const Products = () => {
                   ))}
               </div>
             </div>
+            {console.log('displayBTN', displayBtn)}
             {displayBtn && nrProducts && (
               <a href="#/" onClick={handleLoadMore} id="seeMoreProducts">
                 Load More Products
