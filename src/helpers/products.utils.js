@@ -57,3 +57,51 @@ export const updatePoints = async (
   setShowSpinner(false);
   setClickedBtn(true);
 };
+
+export const getProducts = async (
+  setProducts,
+  setNumProducts,
+  setErrorMessage
+) => {
+  let response = await productService.getProducts();
+  console.log('RESPONSE PRODUCTS', response);
+  if (response) {
+    if (response.status === 200 && response.data.status === 'success') {
+      setProducts(response.data.data.products);
+      setNumProducts(response.data.numProducts);
+    } else {
+      setErrorMessage(
+        'An error occured, we could not find products. Please refresh the page!'
+      );
+    }
+  } else {
+    setErrorMessage('An error occured, please try again later!');
+  }
+};
+
+export const searchProduct = async (
+  data,
+  setProducts,
+  setShowSpinner,
+  setErrorMessage,
+  setNrProducts
+) => {
+  setShowSpinner(true);
+  let response = await productService.searchProduct(data);
+
+  console.log('RESPONSE AFTER SEARCH', response);
+  if (response) {
+    if (response.status === 200 && response.data.status === 'success') {
+      if (response.data.products.length === 0) {
+        setErrorMessage('We could not find products with this name.');
+      } else {
+        setProducts(response.data.products);
+      }
+      setNrProducts(response.data.products.length);
+    } else {
+      setErrorMessage('An error occured! Please try again later!');
+    }
+  }
+
+  setShowSpinner(false);
+};

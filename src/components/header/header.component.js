@@ -138,7 +138,8 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
                 </li>
                 <li>
                   {' '}
-                  <a href="#/">Products</a>{' '}
+                  {/* <a href="#/">Products</a>{' '} */}
+                  <Link to="/products">Products</Link>
                 </li>
                 <li>
                   {' '}
@@ -199,11 +200,13 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
                     <ul className="header-menu-mobile">
                       <li>
                         {' '}
-                        <a href="#/">Get Points</a>{' '}
+                        {/* <a href="#/">Get Points</a>{' '} */}
+                        <Link to="/get-points">Get Points</Link>
                       </li>
                       <li>
                         {' '}
-                        <a href="#/">Products</a>{' '}
+                        {/* <a href="#/">Products</a>{' '} */}
+                        <Link to="/products">Products</Link>
                       </li>
                       <li>
                         {' '}

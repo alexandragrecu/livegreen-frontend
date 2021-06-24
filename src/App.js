@@ -11,6 +11,7 @@ import Footer from './components/footer/footer.component';
 // import screens
 import Home from './screens/home/home.screen';
 import GetPoints from './screens/getPoints/getPoints.screen';
+import Products from './screens/products/products.screen';
 
 // import css files
 import './assets/css/style.css';
@@ -22,9 +23,21 @@ import WOW from 'wowjs';
 
 // import style for sticky navbar
 import { affix } from './assets/js/style';
+import { getProducts } from './helpers/products.utils';
 
 const App = () => {
-  const { setScroll } = useContext(AppContext);
+  const {
+    setScroll,
+    setProducts,
+    setNrProducts,
+    setErrorMessage,
+    user,
+    token,
+  } = useContext(AppContext);
+  // get products
+  const getAllProducts = () => {
+    setProducts(getProducts(setProducts, setNrProducts, setErrorMessage));
+  };
 
   // refs
   // how-it-works, get-rewards, about-us ref
@@ -40,6 +53,7 @@ const App = () => {
     setScroll(true);
   };
 
+  /* eslint-disable */
   useEffect(() => {
     new WOW.WOW({
       animateClass: 'animated',
@@ -47,6 +61,12 @@ const App = () => {
       callback: function (box) {},
     }).init();
   }, []);
+
+  useEffect(() => {
+    if (user && token) {
+      getAllProducts();
+    }
+  }, [token]);
 
   return (
     <Fragment>
@@ -63,6 +83,10 @@ const App = () => {
         <Switch>
           <Route path="/get-points">
             <GetPoints />
+          </Route>
+
+          <Route path="/products">
+            <Products />
           </Route>
           <Route path="/">
             <Home howRef={howRef} rewardsRef={rewardsRef} aboutRef={aboutRef} />

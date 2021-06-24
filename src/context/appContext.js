@@ -39,6 +39,10 @@ function AppProvider({ children }) {
   // error message
   const [errorMessage, setErrorMessage] = useState(false);
 
+  // products
+  const [products, setProducts] = useState([]);
+  const [nrProducts, setNrProducts] = useState(0);
+
   /* eslint-disable */
   const store = {
     loginCredentials,
@@ -59,6 +63,10 @@ function AppProvider({ children }) {
     setToken,
     scroll,
     setScroll,
+    products,
+    setProducts,
+    nrProducts,
+    setNrProducts,
   };
 
   const storeForProvider = useMemo(() => store, [store]);
