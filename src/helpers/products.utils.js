@@ -65,10 +65,8 @@ export const getProducts = async (
   setErrorMessage,
   setShowSpinner
 ) => {
-  console.log('type of setShowSpinner', setShowSpinner);
   setShowSpinner(true);
   let response = await productService.getProducts(params);
-  console.log('RESPONSE PRODUCTS', response);
   if (response) {
     if (response.status === 200 && response.data.status === 'success') {
       setProducts(response.data.data.products);
@@ -94,7 +92,6 @@ export const searchProduct = async (
   setShowSpinner(true);
   let response = await productService.searchProduct(data);
 
-  console.log('RESPONSE AFTER SEARCH', response);
   if (response) {
     if (response.status === 200 && response.data.status === 'success') {
       if (response.data.products.length === 0) {

@@ -7,7 +7,6 @@ import happy from './../../assets/images/happy-earth.png';
 // import components
 import Spinner from './../../components/spinner/spinner.component';
 import ErrorMessage from './../../components/errorMessage/errorMessage.component';
-import SuccessMessage from './../../components/successMessage/successMessage.component';
 
 // utils functions
 import { updatePoints } from '../../helpers/products.utils';
@@ -25,7 +24,6 @@ const ProductModal = ({
 
   return (
     <div id="myModalProduct" className="productModal">
-      {showSpinner && <Spinner />}
       <div className="modal-content">
         <div className="modal-body" style={{ height: '500px' }}>
           <span className="closeproduct" onClick={() => showModal(false)}>
@@ -43,6 +41,7 @@ const ProductModal = ({
                 ? 'You have successfully added this product! Congrats!'
                 : product.name}
             </div>
+            {showSpinner && <Spinner className="spinner" />}
             <div
               className={
                 clickedBtn && !errorMessage

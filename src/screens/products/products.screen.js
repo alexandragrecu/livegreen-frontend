@@ -26,12 +26,9 @@ const Products = () => {
     errorMessage,
     setErrorMessage,
   } = useContext(AppContext);
-  console.log('products', products);
-  console.log('nrProducts', nrProducts);
 
   // nr of products for display
   const [nrProd, setNrProd] = useState(3);
-  console.log('nrProd', nrProd);
   // for displaying "load more products" button
   const [displayBtn, setDisplayBtn] = useState(true);
 
@@ -80,6 +77,7 @@ const Products = () => {
     );
   };
 
+  /* eslint-disable */
   useEffect(() => {
     if (products) {
       if (nrProd >= products.length) {
@@ -229,7 +227,6 @@ const Products = () => {
                     ))}
                 </div>
               </div>
-              {console.log('displayBTN', displayBtn)}
               {displayBtn && nrProducts && (
                 <a href="#/" onClick={handleLoadMore} id="seeMoreProducts">
                   Load More Products
