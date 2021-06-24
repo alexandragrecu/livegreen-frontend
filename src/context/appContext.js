@@ -41,6 +41,9 @@ function AppProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [nrProducts, setNrProducts] = useState(0);
 
+  // offers
+  const [offers, setOffers] = useState([]);
+
   /* eslint-disable */
   const store = {
     loginCredentials,
@@ -65,6 +68,8 @@ function AppProvider({ children }) {
     setProducts,
     nrProducts,
     setNrProducts,
+    offers,
+    setOffers,
   };
 
   const storeForProvider = useMemo(() => store, [store]);

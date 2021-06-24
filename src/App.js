@@ -12,6 +12,7 @@ import Footer from './components/footer/footer.component';
 import Home from './screens/home/home.screen';
 import GetPoints from './screens/getPoints/getPoints.screen';
 import Products from './screens/products/products.screen';
+import Offers from './screens/offers/offers.screen';
 
 // import css files
 import './assets/css/style.css';
@@ -96,6 +97,9 @@ const App = () => {
 
           <Route path="/products">
             <Products />
+          </Route>
+          <Route path="/offers">
+            <Offers />
           </Route>
           <Route path="/">
             <Home howRef={howRef} rewardsRef={rewardsRef} aboutRef={aboutRef} />
