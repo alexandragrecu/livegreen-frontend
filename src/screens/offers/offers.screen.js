@@ -6,6 +6,7 @@ import { AppContext } from './../../context/appContext';
 // import components
 import Spinner from './../../components/spinner/spinner.component';
 import OfferModal from './../../components/offerModal/offerModal.component';
+import ErrorMessage from '../../components/errorMessage/errorMessage.component';
 
 // images
 import img from './../../assets/images/salata-png.png';
@@ -19,7 +20,7 @@ const Offers = () => {
     setShowSpinner,
     user,
     setErrorMessage,
-    ErrorMessage,
+    errorMessage,
   } = useContext(AppContext);
   console.log('offers', offers);
 
@@ -38,9 +39,9 @@ const Offers = () => {
     const nr = nrOffersDisplayed + 3;
     if (nr >= offers.length) {
       setDisplayLoadMoreBtn(false);
-    } else {
-      setNrOffersDisplayed(nr);
     }
+
+    setNrOffersDisplayed(nr);
   };
 
   const isAvailableOffer = (pointOffer) => {
@@ -51,6 +52,13 @@ const Offers = () => {
   };
 
   const [keyword, setKeyword] = useState(false);
+
+  useEffect(() => {
+    if (offers) {
+      setNrOffersDisplayed(3);
+      setDisplayLoadMoreBtn(true);
+    }
+  }, [offers]);
 
   return (
     <Fragment>
@@ -108,7 +116,15 @@ const Offers = () => {
                     type="submit"
                     name=""
                     value=""
-                    onClick={(e) => searchOffer(e, keyword)}
+                    onClick={(e) =>
+                      searchOffer(
+                        e,
+                        keyword,
+                        setOffers,
+                        setShowSpinner,
+                        setErrorMessage
+                      )
+                    }
                     className="submit-search-product"
                   />
                 </form>
@@ -130,6 +146,7 @@ const Offers = () => {
         <div className="listing-offers wow fadeInUp" data-wow-duration="2s">
           <div className="container">
             <div className="row">
+              {console.log('nrOffersDisplayed', nrOffersDisplayed)}
               {offers &&
                 offers.slice(0, nrOffersDisplayed).map((offer) => (
                   <div key={offer._id} className="offer-1 offer-general">
@@ -198,8 +215,12 @@ const Offers = () => {
                     </div>
                   </div>
                 ))}
+              {showSpinner && <Spinner />}
+              {!offers.length && errorMessage && !showSpinner && (
+                <ErrorMessage message={errorMessage} />
+              )}
 
-              {displayLoadMoreBtn && (
+              {displayLoadMoreBtn && !errorMessage && (
                 <a href="#/" id="seeMore" onClick={handleLoadMoreBtn}>
                   Load More
                 </a>

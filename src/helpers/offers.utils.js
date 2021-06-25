@@ -41,8 +41,33 @@ export const getOffer = async (
   setShowSpinner(false);
 };
 
-export const searchOffer = async (e, keyword) => {
+export const searchOffer = async (
+  e,
+  keyword,
+  setOffers,
+  setShowSpinner,
+  setErrorMessage
+) => {
   e.preventDefault();
+  setShowSpinner(true);
   const response = await offerService.searchOffer({ name: keyword });
+
+  if (response) {
+    if (response.status === 200) {
+      if (response.data.offers.length) {
+        setOffers(response.data.offers);
+      } else {
+        setErrorMessage(
+          'We could not find any offers. Please try another word.'
+        );
+        setOffers([]);
+      }
+    } else {
+      setErrorMessage(
+        'An error occurred while searching offers. Please try again later.'
+      );
+    }
+  }
   console.log('response specific offer', response);
+  setShowSpinner(false);
 };
