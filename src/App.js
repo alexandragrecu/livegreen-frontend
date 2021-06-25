@@ -13,6 +13,7 @@ import Home from './screens/home/home.screen';
 import GetPoints from './screens/getPoints/getPoints.screen';
 import Products from './screens/products/products.screen';
 import Offers from './screens/offers/offers.screen';
+import Articles from './screens/articles/articles.screen';
 
 // import css files
 import './assets/css/style.css';
@@ -98,9 +99,15 @@ const App = () => {
           <Route path="/products">
             <Products />
           </Route>
+
           <Route path="/offers">
             <Offers />
           </Route>
+
+          <Route path="/articles">
+            <Articles />
+          </Route>
+
           <Route path="/">
             <Home howRef={howRef} rewardsRef={rewardsRef} aboutRef={aboutRef} />
           </Route>

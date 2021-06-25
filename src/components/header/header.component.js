@@ -148,7 +148,8 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
                 </li>
                 <li>
                   {' '}
-                  <a href="#/">Articles</a>{' '}
+                  {/* <a href="#/">Articles</a>{' '} */}
+                  <Link to="/articles">Articles</Link>
                 </li>
                 <li className="dropdown">
                   {' '}
@@ -216,7 +217,8 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
                       </li>
                       <li>
                         {' '}
-                        <a href="#/">Articles</a>{' '}
+                        {/* <a href="#/">Articles</a>{' '} */}
+                        <Link to="/articles">Articles</Link>
                       </li>
                       <li className="dropdown">
                         {' '}
