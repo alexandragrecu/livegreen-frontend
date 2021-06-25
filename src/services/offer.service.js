@@ -39,3 +39,19 @@ export const getOffer = async (id) => {
     return error.response;
   }
 };
+
+// get offer by keyword
+
+export const searchOffer = async (params) => {
+  try {
+    let response = await axios({
+      method: 'get',
+      url: `${API_URL}/offers/search`,
+      params,
+    });
+
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};

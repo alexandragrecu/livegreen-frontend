@@ -9,7 +9,7 @@ import OfferModal from './../../components/offerModal/offerModal.component';
 
 // images
 import img from './../../assets/images/salata-png.png';
-import { getOffers } from '../../helpers/offers.utils';
+import { getOffers, searchOffer } from '../../helpers/offers.utils';
 
 const Offers = () => {
   const {
@@ -49,6 +49,8 @@ const Offers = () => {
     }
     return false;
   };
+
+  const [keyword, setKeyword] = useState(false);
 
   return (
     <Fragment>
@@ -98,14 +100,15 @@ const Offers = () => {
                 <form className="search-product" action="" method="">
                   <input
                     type="text"
-                    name=""
-                    value=""
+                    name="search-offer"
+                    onChange={(e) => setKeyword(e.target.value)}
                     placeholder=" Search an offer..."
                   />
                   <input
                     type="submit"
                     name=""
                     value=""
+                    onClick={(e) => searchOffer(e, keyword)}
                     className="submit-search-product"
                   />
                 </form>

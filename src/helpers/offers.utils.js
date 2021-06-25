@@ -40,3 +40,9 @@ export const getOffer = async (
 
   setShowSpinner(false);
 };
+
+export const searchOffer = async (e, keyword) => {
+  e.preventDefault();
+  const response = await offerService.searchOffer({ name: keyword });
+  console.log('response specific offer', response);
+};
