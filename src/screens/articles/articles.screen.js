@@ -21,7 +21,6 @@ const Articles = () => {
     setErrorMessage,
     errorMessage,
   } = useContext(AppContext);
-  console.log('articles', articles);
 
   const [nrDisplayed, setNrDisplayed] = useState(3);
   const [displayLoadMoreBtn, setDisplayLoadMoreBtn] = useState(true);
@@ -73,7 +72,7 @@ const Articles = () => {
             <div className="row">
               {articles &&
                 articles.slice(0, nrDisplayed).map((article) => (
-                  <div className="articol-1 articol-general">
+                  <div key={article._id} className="articol-1 articol-general">
                     <div className="col-md-6 col-xs-12">
                       <img src={article.image} alt="" />
                     </div>
