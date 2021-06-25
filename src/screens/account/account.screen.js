@@ -6,6 +6,11 @@ import { AppContext } from './../../context/appContext';
 // utils functions
 import { updateData } from './../../helpers/account.utils';
 
+import {
+  validateEmail,
+  validatePassword,
+} from '../../helpers/validateFields.utils';
+
 // import components
 import Spinner from './../../components/spinner/spinner.component';
 import ErrorMessage from '../../components/errorMessage/errorMessage.component';
@@ -13,6 +18,8 @@ import SuccessMessage from '../../components/successMessage/successMessage.compo
 
 // style for spinner
 import { loginStyle } from './../../assets/css/spinner';
+
+const style = { textAlign: 'start', marginTop: '-10px' };
 
 const Account = () => {
   const {
@@ -35,6 +42,20 @@ const Account = () => {
   };
 
   const [clickedEditBtn, setClickedBtn] = useState(false);
+
+  const [typing, setTyping] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    zipCode: false,
+    newPassword: false,
+  });
+
+  const isTyping = (key, value) => {
+    const typingAux = { ...typing };
+    typingAux[key] = value;
+    setTyping(typingAux);
+  };
 
   const handleEditAccount = (e) => {
     setErrorMessage(false);
@@ -79,6 +100,8 @@ const Account = () => {
                       id="fname"
                       type="text"
                       name="fname"
+                      onFocus={() => isTyping('firstName', true)}
+                      onBlur={() => isTyping('firstName', false)}
                       value={updatedUser.firstName}
                       onChange={(e) =>
                         setUpdatedUser({
@@ -88,12 +111,20 @@ const Account = () => {
                       }
                     />
                   </div>
+                  {!typing['firstName'] && !updatedUser.firstName.length && (
+                    <ErrorMessage
+                      message="First name field can't be empty"
+                      style={style}
+                    />
+                  )}
                   <div className="form-group">
                     <label htmlFor="lname">Last name</label>
                     <input
                       id="lname"
                       type="text"
                       name="lname"
+                      onFocus={() => isTyping('lastName', true)}
+                      onBlur={() => isTyping('lastName', false)}
                       value={updatedUser.lastName}
                       onChange={(e) =>
                         setUpdatedUser({
@@ -103,12 +134,20 @@ const Account = () => {
                       }
                     />
                   </div>
+                  {!typing['lastName'] && !updatedUser.lastName.length && (
+                    <ErrorMessage
+                      message="Last name field can't be empty"
+                      style={style}
+                    />
+                  )}
                   <div className="form-group">
                     <label htmlFor="email">Your email address:</label>
                     <input
                       id="email"
                       type="email"
                       name="email"
+                      onFocus={() => isTyping('email', true)}
+                      onBlur={() => isTyping('email', false)}
                       value={updatedUser.email}
                       onChange={(e) =>
                         setUpdatedUser({
@@ -118,6 +157,14 @@ const Account = () => {
                       }
                     />
                   </div>
+                  {updatedUser.email.length !== 0 &&
+                    !typing['email'] &&
+                    !validateEmail(updatedUser.email) && (
+                      <ErrorMessage
+                        message="Please enter a valid email address!"
+                        style={style}
+                      />
+                    )}
                   <div className="form-group">
                     <label htmlFor="zipcode">ZIP code:</label>
                     <input
@@ -143,8 +190,32 @@ const Account = () => {
                       id="newpassword"
                       type="password"
                       name="newpassword"
+                      onFocus={() => isTyping('password', true)}
+                      onBlur={() => isTyping('password', false)}
+                      onChange={(e) =>
+                        setUpdatedUser({
+                          ...updatedUser,
+                          newPassword: e.target.value,
+                        })
+                      }
                     />
                   </div>
+                  {updatedUser.newPassword &&
+                    updatedUser.newPassword.length !== 0 &&
+                    !typing['password'] &&
+                    validatePassword(updatedUser.newPassword) !== true && (
+                      <ErrorMessage
+                        message="Please enter a valid password. It must contain at least 6 characters, 1 upper case, 1 number and 1 special character!"
+                        style={style}
+                      />
+                    )}
+                  {typing['password'] && (
+                    <div className="formInfo" style={style}>
+                      It must contain at least 6 characters, 1 upper case
+                      character, 1 number and 1 special character!"
+                    </div>
+                  )}
+                  <br />
                   <div className="row">
                     <div className="col-md-6 col-xs-12">
                       <input
