@@ -22,18 +22,18 @@ const Offers = () => {
     setErrorMessage,
     errorMessage,
   } = useContext(AppContext);
-  console.log('offers', offers);
 
+  /* eslint-disable */
   useEffect(() => {
-    getOffers(setShowSpinner, setOffers, setErrorMessage);
+    getOffers(setShowSpinner, setOffers, setErrorMessage, {}, false);
   }, []);
 
   // load more button functionality
   const [nrOffersDisplayed, setNrOffersDisplayed] = useState(3);
   const [displayLoadMoreBtn, setDisplayLoadMoreBtn] = useState(true);
 
+  // for opening offer modal
   const [clickedOffer, setClickedOffer] = useState(false);
-  console.log('clickedOffer', clickedOffer);
 
   const handleLoadMoreBtn = () => {
     const nr = nrOffersDisplayed + 3;
@@ -51,7 +51,11 @@ const Offers = () => {
     return false;
   };
 
+  // for searching products
   const [keyword, setKeyword] = useState(false);
+
+  // filter offers
+  const [filterObj, setFilterObj] = useState({});
 
   useEffect(() => {
     if (offers) {
@@ -130,12 +134,34 @@ const Offers = () => {
                 </form>
                 <form className="filter-product" action="" method="">
                   <label>Filter offers</label>
-                  <input type="text" name="" value="" placeholder="City:" />
-                  <input type="text" name="" value="" placeholder="Points:" />
+                  <input
+                    type="text"
+                    name="city"
+                    placeholder="City:"
+                    onChange={(e) =>
+                      setFilterObj({ ...filterObj, city: e.target.value })
+                    }
+                  />
+                  <input
+                    type="text"
+                    name="points"
+                    placeholder="Points:"
+                    onChange={(e) =>
+                      setFilterObj({ ...filterObj, points: e.target.value })
+                    }
+                  />
                   <input
                     type="submit"
                     name=""
-                    value=""
+                    onClick={(e) =>
+                      getOffers(
+                        setShowSpinner,
+                        setOffers,
+                        setErrorMessage,
+                        filterObj,
+                        e
+                      )
+                    }
                     className="submit-filter-product"
                   />
                 </form>
@@ -146,7 +172,6 @@ const Offers = () => {
         <div className="listing-offers wow fadeInUp" data-wow-duration="2s">
           <div className="container">
             <div className="row">
-              {console.log('nrOffersDisplayed', nrOffersDisplayed)}
               {offers &&
                 offers.slice(0, nrOffersDisplayed).map((offer) => (
                   <div key={offer._id} className="offer-1 offer-general">

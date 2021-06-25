@@ -11,13 +11,14 @@ const setToken = () => {
 };
 
 // get all offers
-export const getOffers = async () => {
+export const getOffers = async (params) => {
   setToken();
 
   try {
     let response = await axios({
       method: 'get',
       url: `${API_URL}/offers`,
+      params,
     });
     return response;
   } catch (error) {

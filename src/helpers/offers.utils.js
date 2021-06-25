@@ -1,12 +1,25 @@
 import * as offerService from './../services/offer.service';
 import * as userOptions from './user.utils';
 
-export const getOffers = async (setShowSpinner, setOffers, setErrorMessage) => {
+export const getOffers = async (
+  setShowSpinner,
+  setOffers,
+  setErrorMessage,
+  params,
+  e
+) => {
+  if (e) {
+    e.preventDefault();
+  }
   setShowSpinner(true);
-  const response = await offerService.getOffers();
+  const response = await offerService.getOffers(params);
   if (response) {
     if (response.status === 200) {
-      setOffers(response.data.data.offers);
+      if (response.data.data.offers.length) {
+        setOffers(response.data.data.offers);
+      } else {
+        setErrorMessage('We do not have offers with your preferences.');
+      }
     }
   } else {
     setErrorMessage('An error occured. Please refresh the page.');
@@ -68,6 +81,5 @@ export const searchOffer = async (
       );
     }
   }
-  console.log('response specific offer', response);
   setShowSpinner(false);
 };
