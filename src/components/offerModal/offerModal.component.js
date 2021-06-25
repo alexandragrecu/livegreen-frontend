@@ -3,6 +3,11 @@ import React, { useContext, useState } from 'react';
 // utils functions
 import { getOffer } from '../../helpers/offers.utils';
 
+// import components
+import Spinner from './../../components/spinner/spinner.component';
+import ErrorMessage from './../../components/errorMessage/errorMessage.component';
+import SuccessMessage from './../../components/successMessage/successMessage.component';
+
 // context
 import { AppContext } from './../../context/appContext';
 
@@ -12,7 +17,7 @@ const OfferModal = ({ offer, setClickedOffer }) => {
     setShowSpinner,
     setUser,
     setErrorMessage,
-    ErrorMessage,
+    errorMessage,
     setSuccessMessage,
     successMessage,
   } = useContext(AppContext);
@@ -22,6 +27,8 @@ const OfferModal = ({ offer, setClickedOffer }) => {
   const handleCloseModal = () => {
     setClickedOffer(false);
     setClickedBtn(false);
+    setErrorMessage(false);
+    setSuccessMessage(false);
   };
 
   return (
@@ -33,6 +40,9 @@ const OfferModal = ({ offer, setClickedOffer }) => {
           </span>
           <div className="wrapper-modal-offer">
             <div className="title-single-product-modal">{offer.name}</div>
+            {clickedBtn && showSpinner && <Spinner />}
+            {successMessage && <SuccessMessage message={successMessage} />}
+            {errorMessage && <ErrorMessage message={errorMessage} />}
             {!clickedBtn && !showSpinner && (
               <div
                 className="info-product-single"
