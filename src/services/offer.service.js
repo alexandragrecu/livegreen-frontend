@@ -24,3 +24,18 @@ export const getOffers = async () => {
     return error.response;
   }
 };
+
+// get an offer
+export const getOffer = async (id) => {
+  setToken();
+
+  try {
+    let response = await axios({
+      method: 'get',
+      url: `${API_URL}/offers/${id}`,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};

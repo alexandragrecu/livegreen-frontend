@@ -1360,7 +1360,7 @@ footer ul li a:hover {
 .box-single-product,
 .box-single-offer {
   max-width: 300px;
-  height: 320px;
+  height: 370px;
   display: inline-block;
   border-top-left-radius: 150px;
   border-bottom-left-radius: 50px;
@@ -1951,6 +1951,11 @@ footer ul li a:hover {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.wrapper-modal-offer {
+  margin: 0 auto;
+  display: table;
 }
 
 .formHelp {

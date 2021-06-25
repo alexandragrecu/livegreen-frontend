@@ -34,8 +34,12 @@ function AppProvider({ children }) {
 
   // spinner
   const [showSpinner, setShowSpinner] = useState(false);
+
   // error message
   const [errorMessage, setErrorMessage] = useState(false);
+
+  // success message
+  const [successMessage, setSuccessMessage] = useState(false);
 
   // products
   const [products, setProducts] = useState([]);
@@ -54,6 +58,8 @@ function AppProvider({ children }) {
     setShowSpinner,
     errorMessage,
     setErrorMessage,
+    successMessage,
+    setSuccessMessage,
     showLoginModal,
     setShowLoginModal,
     registerCredentials,
