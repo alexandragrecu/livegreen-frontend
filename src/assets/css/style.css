@@ -1881,6 +1881,7 @@ footer ul li a:hover {
   padding: 10px;
   background: transparent;
   float: left;
+  width: 300px;
 }
 
 .content-form .form-group label {

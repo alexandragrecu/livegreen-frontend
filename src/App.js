@@ -26,6 +26,7 @@ import WOW from 'wowjs';
 // import style for sticky navbar
 import { affix } from './assets/js/style';
 import { getProducts } from './helpers/products.utils';
+import Account from './screens/account/account.screen';
 
 const App = () => {
   const {
@@ -106,6 +107,10 @@ const App = () => {
 
           <Route path="/articles">
             <Articles />
+          </Route>
+
+          <Route path="/account-settings">
+            <Account />
           </Route>
 
           <Route path="/">

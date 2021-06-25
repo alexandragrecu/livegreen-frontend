@@ -170,7 +170,8 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
                       </li>
                       <li>
                         {' '}
-                        <a href="#/"> Account settings</a>{' '}
+                        {/* <a href="#/"> Account settings</a>{' '} */}
+                        <Link to="/account-settings">Account settings</Link>
                       </li>
                       <li>
                         {' '}
@@ -232,7 +233,8 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
                           </li>
                           <li>
                             {' '}
-                            <a href="#/"> Account settings</a>{' '}
+                            {/* <a href="#/"> Account settings</a>{' '} */}
+                            <Link to="/account-settings">Account settings</Link>
                           </li>
                           <li>
                             {' '}
