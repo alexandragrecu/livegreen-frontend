@@ -8,6 +8,7 @@ import { updateData } from './../../helpers/account.utils';
 
 import {
   validateEmail,
+  validateFieldsForEditAccount,
   validatePassword,
 } from '../../helpers/validateFields.utils';
 
@@ -33,6 +34,7 @@ const Account = () => {
     setSuccessMessage,
   } = useContext(AppContext);
   console.log('SUCCESS MESSAGE', successMessage);
+  console.log('ERROR MESSAGE', errorMessage);
 
   const [updatedUser, setUpdatedUser] = useState(user);
   console.log('updatedUser', updatedUser);
@@ -41,6 +43,8 @@ const Account = () => {
     setUpdatedUser(user);
   };
 
+  const [passwords, setPasswords] = useState(false);
+  console.log('passwords', passwords);
   const [clickedEditBtn, setClickedBtn] = useState(false);
 
   const [typing, setTyping] = useState({
@@ -55,19 +59,30 @@ const Account = () => {
     const typingAux = { ...typing };
     typingAux[key] = value;
     setTyping(typingAux);
-  };
 
-  const handleEditAccount = (e) => {
     setErrorMessage(false);
     setSuccessMessage(false);
-    updateData(
-      e,
-      updatedUser,
-      setUser,
-      setShowSpinner,
-      setErrorMessage,
-      setSuccessMessage
-    );
+    setError(false);
+  };
+
+  const [error, setError] = useState(false);
+  const handleEditAccount = (e) => {
+    e.preventDefault();
+    setErrorMessage(false);
+    setSuccessMessage(false);
+    if (validateFieldsForEditAccount(updatedUser, passwords)) {
+      updateData(
+        e,
+        updatedUser,
+        setUser,
+        setShowSpinner,
+        setErrorMessage,
+        setSuccessMessage
+      );
+      console.log('buuun');
+    } else {
+      setError('Please complete all the fields correctly.');
+    }
     setClickedBtn(true);
   };
 
@@ -182,7 +197,17 @@ const Account = () => {
                   </div>
                   <div className="form-group">
                     <label htmlFor="password">Old password:</label>
-                    <input id="password" type="password" name="password" />
+                    <input
+                      id="password"
+                      type="password"
+                      name="password"
+                      onChange={(e) => {
+                        setPasswords({
+                          ...passwords,
+                          oldPassword: e.target.value,
+                        });
+                      }}
+                    />
                   </div>
                   <div className="form-group">
                     <label htmlFor="newpassword">New password:</label>
@@ -192,18 +217,18 @@ const Account = () => {
                       name="newpassword"
                       onFocus={() => isTyping('password', true)}
                       onBlur={() => isTyping('password', false)}
-                      onChange={(e) =>
-                        setUpdatedUser({
-                          ...updatedUser,
+                      onChange={(e) => {
+                        setPasswords({
+                          ...passwords,
                           newPassword: e.target.value,
-                        })
-                      }
+                        });
+                      }}
                     />
                   </div>
-                  {updatedUser.newPassword &&
-                    updatedUser.newPassword.length !== 0 &&
+                  {passwords.newPassword &&
+                    passwords.newPassword.length !== 0 &&
                     !typing['password'] &&
-                    validatePassword(updatedUser.newPassword) !== true && (
+                    validatePassword(passwords.newPassword) !== true && (
                       <ErrorMessage
                         message="Please enter a valid password. It must contain at least 6 characters, 1 upper case, 1 number and 1 special character!"
                         style={style}
@@ -239,6 +264,7 @@ const Account = () => {
                   </div>
                 </form>
                 <br />
+                {error && <ErrorMessage message={error} />}
                 {errorMessage && <ErrorMessage message={errorMessage} />}
                 {successMessage && <SuccessMessage message={successMessage} />}
               </div>

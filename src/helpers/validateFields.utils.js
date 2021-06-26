@@ -66,3 +66,24 @@ export const validateFieldsForRegister = (credentials, confirmPassword) => {
   }
   return false;
 };
+
+export const validateFieldsForEditAccount = (updatedUser, passwords) => {
+  if (
+    updatedUser.firstName !== 0 &&
+    updatedUser.lastName !== 0 &&
+    validateEmail(updatedUser.email) &&
+    updatedUser.zipCode !== 0
+  ) {
+    console.log('PASSWORDS', passwords);
+    if (passwords) {
+      if (validatePassword(passwords.newPassword) === true) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+  return false;
+};
