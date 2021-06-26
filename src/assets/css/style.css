@@ -884,6 +884,14 @@ footer ul li a:hover {
   margin-bottom: 50px;
 }
 
+.info {
+  margin-top: 120px;
+  font-size: 20px;
+  line-height: 1.3;
+  color: #6cc57c;
+  margin-bottom: 0px;
+}
+
 .elements-column {
   position: relative;
   z-index: 1;
@@ -2087,4 +2095,37 @@ footer ul li a:hover {
   .section-1-settings {
     padding: 140px 0;
   }
+}
+
+.table-wrapper {
+  /* margin-top: 40px; */
+  padding-top: 40px;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.table-wrapper thead {
+  border-bottom: 7 px solid #fff;
+  box-shadow: 0 0px 40px rgb(49 169 93 / 20%), 0 0px 40px rgb(49 169 93 / 20%);
+}
+
+.table-wrapper thead th {
+  background-color: #d0f0d6;
+  vertical-align: middle;
+  max-width: 260px;
+  text-align: center;
+}
+
+.table-wrapper thead th:not(:first-child) {
+  border-left: 1px solid #fff;
+}
+
+.table-wrapper tr {
+  text-align: center;
+}
+
+.map-container {
+  margin-top: 50px;
+  box-shadow: 0 0px 40px rgb(49 169 93 / 20%), 0 0px 40px rgb(49 169 93 / 20%);
 }

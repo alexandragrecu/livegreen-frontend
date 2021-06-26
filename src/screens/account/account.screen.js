@@ -45,7 +45,6 @@ const Account = () => {
   };
 
   const [passwords, setPasswords] = useState(false);
-  console.log('passwords', passwords);
   const [clickedEditBtn, setClickedBtn] = useState(false);
 
   const [typing, setTyping] = useState({

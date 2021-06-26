@@ -27,6 +27,7 @@ import WOW from 'wowjs';
 import { affix } from './assets/js/style';
 import { getProducts } from './helpers/products.utils';
 import Account from './screens/account/account.screen';
+import Profile from './screens/profile/profile.screen';
 
 const App = () => {
   const {
@@ -111,6 +112,10 @@ const App = () => {
 
           <Route path="/account-settings">
             <Account />
+          </Route>
+
+          <Route path="/profile">
+            <Profile />
           </Route>
 
           <Route path="/">

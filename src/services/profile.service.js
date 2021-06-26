@@ -10,11 +10,13 @@ const setToken = () => {
   axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 };
 
-export const getArticles = async () => {
+export const getRewards = async () => {
+  setToken();
+
   try {
     let response = await axios({
       method: 'get',
-      url: `${API_URL}/articles`,
+      url: `${API_URL}/users/rewards`,
     });
     return response;
   } catch (error) {
