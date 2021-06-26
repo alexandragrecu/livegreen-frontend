@@ -1634,6 +1634,21 @@ footer ul li a:hover {
   max-width: 400px;
 }
 
+.search-places {
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-places input[type='text'] {
+  border: 0;
+
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  padding: 10px;
+  width: calc(100% - 30px);
+}
+
 .search-product input[type='text'] {
   border: 0;
   background: transparent;
@@ -2128,4 +2143,22 @@ footer ul li a:hover {
 .map-container {
   margin-top: 50px;
   box-shadow: 0 0px 40px rgb(49 169 93 / 20%), 0 0px 40px rgb(49 169 93 / 20%);
+}
+
+.places-container {
+  background-color: #fff;
+  opacity: 1;
+  vertical-align: middle;
+  width: calc(100% - 30px);
+  box-shadow: 0 0px 40px rgb(49 169 93 / 20%), 0 0px 40px rgb(49 169 93 / 20%);
+}
+
+.places-container .suggestion {
+  padding: 10px;
+  opacity: 1;
+  border-top: 1px solid #ddd;
+}
+
+.location-marker {
+  color: #6cc57c;
 }

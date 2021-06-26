@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   GoogleMap,
   Marker,
@@ -6,6 +6,9 @@ import {
   withGoogleMap,
   InfoWindow,
 } from 'react-google-maps';
+
+// context
+import { AppContext } from './../../context/appContext';
 
 import bin from './../../assets/images/bin2.png';
 
@@ -19,7 +22,21 @@ const places = [
   { name: 'Recycling center 5', lat: 44.37504, lng: 26.1471993 },
 ];
 
-const Map = ({ center, anchor, scaledSize }) => {
+const Map = ({ anchor, scaledSize, zoom, coordinates }) => {
+  const { center } = useContext(AppContext);
+  console.log('center', center);
+
+  const [zoomIn, setZoomIn] = useState(zoom);
+  console.log(zoomIn);
+  const getZoom = (z) => {
+    setZoomIn(z);
+  };
+  useEffect(() => {
+    if (center[0] !== 44.4372808 && center[1] !== 26.1000002) {
+      getZoom(14);
+    }
+  }, [center]);
+
   const [selectedCenter, setSelectedCenter] = useState(null);
   const icon = {
     url: bin,
@@ -31,8 +48,8 @@ const Map = ({ center, anchor, scaledSize }) => {
     <React.Fragment>
       <GoogleMap
         key={1}
-        defaultZoom={11}
-        defaultCenter={{ lat: center[0], lng: center[1] }}
+        zoom={zoomIn}
+        center={{ lat: center[0], lng: center[1] }}
       >
         {places.map((place) => (
           <Marker
@@ -52,6 +69,12 @@ const Map = ({ center, anchor, scaledSize }) => {
             )} */}
           </Marker>
         ))}
+        <Marker
+          position={{
+            lat: center[0],
+            lng: center[1],
+          }}
+        />
         {/* ) */}
       </GoogleMap>
     </React.Fragment>

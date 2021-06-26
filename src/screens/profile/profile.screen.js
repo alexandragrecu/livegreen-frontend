@@ -16,14 +16,41 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 
+const searchOptions = {
+  componentRestrictions: {
+    country: ['ro'],
+  },
+  types: ['establishment'],
+};
+
 const Profile = () => {
-  const { user, showSpinner, setShowSpinner, errorMessage, setErrorMessage } =
-    useContext(AppContext);
+  const {
+    user,
+    showSpinner,
+    setShowSpinner,
+    errorMessage,
+    setErrorMessage,
+    setCenter,
+  } = useContext(AppContext);
 
   const [rewards, setRewards] = useState(false);
   console.log('rewards', rewards);
   const getUserRewards = () => {
     getRewards(setShowSpinner, setErrorMessage, setRewards);
+  };
+
+  // for autocomplete
+  const [address, setAddress] = useState('');
+  const [coordinates, setCoordinates] = useState([]);
+  console.log('coordinates', coordinates);
+
+  const handleSelect = async (value) => {
+    const results = await geocodeByAddress(value);
+    const latLng = await getLatLng(results[0]);
+    console.log('results', latLng);
+    setAddress(value);
+    setCoordinates([latLng.lat, latLng.lng]);
+    setCenter([latLng.lat, latLng.lng]);
   };
 
   useEffect(() => {
@@ -99,12 +126,51 @@ const Profile = () => {
           <div className="row" style={{ display: 'flex' }}>
             <div className="col-md-6 col-xs-12" style={{ marginTop: '50px' }}>
               <div className="container">
-                <form className="search-product" action="" method="">
-                  <input
-                    type="text"
-                    name="search-offer"
-                    placeholder=" Search a city..."
-                  />
+                <form className="search-places" action="" method="">
+                  <PlacesAutocomplete
+                    value={address}
+                    onChange={setAddress}
+                    onSelect={handleSelect}
+                    searchOptions={searchOptions}
+                  >
+                    {({
+                      getInputProps,
+                      suggestions,
+                      getSuggestionItemProps,
+                      loading,
+                    }) => (
+                      <div>
+                        <input
+                          {...getInputProps({ placeholder: 'Search a place:' })}
+                        />
+                        <div className="places-container">
+                          {suggestions.map((suggestion) => {
+                            const style = {
+                              backgroundColor: suggestion.active
+                                ? '#d0f0d6'
+                                : 'transparent',
+                            };
+                            return (
+                              <div
+                                className="suggestion"
+                                {...getSuggestionItemProps(suggestion, {
+                                  style,
+                                })}
+                              >
+                                <i
+                                  className="fa fa-map-marker location-marker"
+                                  aria-hidden="true"
+                                ></i>{' '}
+                                <span> </span>
+                                <span> </span>
+                                {suggestion.description}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </PlacesAutocomplete>
                 </form>
               </div>
             </div>
@@ -116,7 +182,8 @@ const Profile = () => {
                 googleMapURL={
                   'https://maps.googleapis.com/maps/api/js?key=AIzaSyBQ56ZZfTL3fSimAYL3i9Ry6TptGHyV1iY&libraries=places'
                 }
-                center={[44.4372808, 26.1000002]}
+                zoom={coordinates.length ? 13 : 11}
+                coordinates={coordinates}
                 anchor={[28, 56]}
                 scaledSize={[45, 40]}
                 loadingElement={<div style={{ height: '100%' }} />}

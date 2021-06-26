@@ -51,6 +51,9 @@ function AppProvider({ children }) {
   // articles
   const [articles, setArticles] = useState([]);
 
+  // center coordinates for map
+  const [center, setCenter] = useState([44.4372808, 26.1000002]);
+
   /* eslint-disable */
   const store = {
     loginCredentials,
@@ -81,6 +84,8 @@ function AppProvider({ children }) {
     setOffers,
     articles,
     setArticles,
+    center,
+    setCenter,
   };
 
   const storeForProvider = useMemo(() => store, [store]);
