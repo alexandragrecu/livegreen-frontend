@@ -1,14 +1,7 @@
 import axios from 'axios';
 
-import { getToken } from '../helpers/helpers.utils';
-
 // constants
 import { API_URL } from './../constants/constants';
-
-const setToken = () => {
-  const token = getToken();
-  axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-};
 
 export const getArticles = async () => {
   try {

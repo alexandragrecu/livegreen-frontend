@@ -43,6 +43,7 @@ const Articles = () => {
     setErrorMessage(false);
   };
 
+  /* eslint-disable */
   useEffect(() => {
     getAllArticles();
   }, []);

@@ -7,7 +7,6 @@ export const getRewards = async (
 ) => {
   setShowSpinner(true);
   const response = await profileService.getRewards();
-  console.log('rewards', response);
   if (response) {
     if (response.status === 200) {
       const rewards = response.data.data.rewards;

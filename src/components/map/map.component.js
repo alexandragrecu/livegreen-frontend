@@ -4,7 +4,6 @@ import {
   Marker,
   withScriptjs,
   withGoogleMap,
-  InfoWindow,
 } from 'react-google-maps';
 
 // context
@@ -22,12 +21,10 @@ const places = [
   { name: 'Recycling center 5', lat: 44.37504, lng: 26.1471993 },
 ];
 
-const Map = ({ anchor, scaledSize, zoom, coordinates }) => {
+const Map = ({ anchor, scaledSize, zoom }) => {
   const { center } = useContext(AppContext);
-  console.log('center', center);
 
   const [zoomIn, setZoomIn] = useState(zoom);
-  console.log(zoomIn);
   const getZoom = (z) => {
     setZoomIn(z);
   };
@@ -38,6 +35,7 @@ const Map = ({ anchor, scaledSize, zoom, coordinates }) => {
   }, [center]);
 
   const [selectedCenter, setSelectedCenter] = useState(null);
+  console.log(selectedCenter);
   const icon = {
     url: bin,
     scaledSize: new google.maps.Size(scaledSize[0], scaledSize[1]),

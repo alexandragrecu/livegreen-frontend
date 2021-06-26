@@ -12,7 +12,6 @@ export const updateData = async (
   e.preventDefault();
   setShowSpinner(true);
   let response = await accountService.updateData(data);
-  console.log('updatedData', response);
 
   if (response) {
     if (response.status === 200) {
@@ -41,8 +40,6 @@ export const changePassword = async (
   setToken
 ) => {
   let response = await accountService.changePassword(data);
-  console.log('password updated', response);
-  console.log('reps', response.data);
   if (response) {
     if (response.status === 200) {
       setSuccessMessage('Your account details have been successfully updated.');

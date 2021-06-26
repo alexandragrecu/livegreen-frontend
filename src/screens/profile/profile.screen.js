@@ -24,17 +24,10 @@ const searchOptions = {
 };
 
 const Profile = () => {
-  const {
-    user,
-    showSpinner,
-    setShowSpinner,
-    errorMessage,
-    setErrorMessage,
-    setCenter,
-  } = useContext(AppContext);
+  const { user, setShowSpinner, setErrorMessage, setCenter } =
+    useContext(AppContext);
 
   const [rewards, setRewards] = useState(false);
-  console.log('rewards', rewards);
   const getUserRewards = () => {
     getRewards(setShowSpinner, setErrorMessage, setRewards);
   };
@@ -42,17 +35,16 @@ const Profile = () => {
   // for autocomplete
   const [address, setAddress] = useState('');
   const [coordinates, setCoordinates] = useState([]);
-  console.log('coordinates', coordinates);
 
   const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
-    console.log('results', latLng);
     setAddress(value);
     setCoordinates([latLng.lat, latLng.lng]);
     setCenter([latLng.lat, latLng.lng]);
   };
 
+  /* eslint-disable */
   useEffect(() => {
     getUserRewards();
   }, []);
@@ -122,8 +114,15 @@ const Profile = () => {
         >
           Find recycling centers:
         </div>
-        <div className="container">
-          <div className="row" style={{ display: 'flex' }}>
+        <div className="container wow fadeInUp" data-wow-duration="2s">
+          <div
+            className="row"
+            style={{
+              display: 'flex',
+              visibility: 'visible',
+              animationDuration: '2s',
+            }}
+          >
             <div className="col-md-6 col-xs-12" style={{ marginTop: '50px' }}>
               <div className="container">
                 <form className="search-places" action="" method="">

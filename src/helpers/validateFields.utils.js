@@ -74,7 +74,6 @@ export const validateFieldsForEditAccount = (updatedUser, passwords) => {
     validateEmail(updatedUser.email) &&
     updatedUser.zipCode !== 0
   ) {
-    console.log('PASSWORDS', passwords);
     if (passwords) {
       if (validatePassword(passwords.newPassword) === true) {
         return true;

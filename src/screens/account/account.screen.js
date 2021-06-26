@@ -34,11 +34,8 @@ const Account = () => {
     setSuccessMessage,
     setToken,
   } = useContext(AppContext);
-  console.log('SUCCESS MESSAGE', successMessage);
-  console.log('ERROR MESSAGE', errorMessage);
 
   const [updatedUser, setUpdatedUser] = useState(user);
-  console.log('updatedUser', updatedUser);
 
   const handleCancel = () => {
     setUpdatedUser(user);
