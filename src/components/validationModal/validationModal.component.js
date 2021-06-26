@@ -1,4 +1,5 @@
 import React from 'react';
+import { validatePoints } from '../../helpers/user.utils';
 
 const validationModal = ({
   firstName,
@@ -6,7 +7,9 @@ const validationModal = ({
   points,
   handleCancel,
   validate,
+  id,
 }) => {
+  console.log(id);
   return (
     <div id="myModallogin" className="modalValidation">
       <div className="modal-content" style={{ height: '200px' }}>
@@ -31,6 +34,7 @@ const validationModal = ({
                   type="submit"
                   name=""
                   value="Validate points"
+                  onClick={(e) => validatePoints(e, { id })}
                 />
               </div>
             </form>

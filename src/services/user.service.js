@@ -38,3 +38,21 @@ export const getUsers = async (params) => {
     return error.response;
   }
 };
+
+// get validate points
+export const validatePoints = async (params) => {
+  const token = getToken();
+
+  axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+  console.log('params', params);
+  try {
+    let response = await axios({
+      method: 'get',
+      url: `${API_URL}/users/validatePoints`,
+      params,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};

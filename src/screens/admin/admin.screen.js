@@ -75,6 +75,7 @@ const AdminPage = () => {
           points={clickedUser.totalPoints}
           handleCancel={handleCancel}
           validate={clickedUser.validatedPoints}
+          id={clickedUser._id}
         />
       )}
     </div>

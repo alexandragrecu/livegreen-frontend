@@ -17,3 +17,10 @@ export const getUsers = async (setUsers) => {
     }
   }
 };
+
+export const validatePoints = async (e, params) => {
+  e.preventDefault();
+  console.log('utils params', params);
+  let response = await userServices.validatePoints(params);
+  console.log(response);
+};
