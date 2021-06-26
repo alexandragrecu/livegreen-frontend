@@ -14,6 +14,7 @@ import GetPoints from './screens/getPoints/getPoints.screen';
 import Products from './screens/products/products.screen';
 import Offers from './screens/offers/offers.screen';
 import Articles from './screens/articles/articles.screen';
+import AdminPage from './screens/admin/admin.screen';
 
 // import css files
 import './assets/css/style.css';
@@ -116,6 +117,10 @@ const App = () => {
 
           <Route path="/profile">
             <Profile />
+          </Route>
+
+          <Route path="/admin">
+            <AdminPage />
           </Route>
 
           <Route path="/">

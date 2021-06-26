@@ -8,3 +8,12 @@ export const getUser = async (setUser) => {
     }
   }
 };
+
+export const getUsers = async (setUsers) => {
+  let response = await userServices.getUsers();
+  if (response) {
+    if (response.status === 200) {
+      setUsers(response.data.data.users);
+    }
+  }
+};

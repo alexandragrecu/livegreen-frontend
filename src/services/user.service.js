@@ -21,3 +21,20 @@ export const getUser = async (params) => {
     return error.response;
   }
 };
+
+// get users
+export const getUsers = async (params) => {
+  const token = getToken();
+
+  axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
+  try {
+    let response = await axios({
+      method: 'get',
+      url: `${API_URL}/users`,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
