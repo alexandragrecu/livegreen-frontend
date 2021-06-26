@@ -31,3 +31,27 @@ export const updateData = async (
 
   setShowSpinner(false);
 };
+
+export const changePassword = async (
+  data,
+  setShowSpinner,
+  setErrorMessage,
+  setSuccessMessage,
+  setUser,
+  setToken
+) => {
+  let response = await accountService.changePassword(data);
+  console.log('password updated', response);
+  console.log('reps', response.data);
+  if (response) {
+    if (response.status === 200) {
+      setSuccessMessage('Your account details have been successfully updated.');
+      setUser(response.data.data.user);
+      setToken(response.data.token);
+    } else if (response.status === 401 && response.data.status === 'fail') {
+      setErrorMessage(`${response.data.message} We could not update it.`);
+    } else {
+      setErrorMessage('An error occured. Please try again later.');
+    }
+  }
+};

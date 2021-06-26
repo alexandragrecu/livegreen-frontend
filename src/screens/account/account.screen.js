@@ -4,7 +4,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from './../../context/appContext';
 
 // utils functions
-import { updateData } from './../../helpers/account.utils';
+import { updateData, changePassword } from './../../helpers/account.utils';
 
 import {
   validateEmail,
@@ -32,6 +32,7 @@ const Account = () => {
     setErrorMessage,
     successMessage,
     setSuccessMessage,
+    setToken,
   } = useContext(AppContext);
   console.log('SUCCESS MESSAGE', successMessage);
   console.log('ERROR MESSAGE', errorMessage);
@@ -65,7 +66,9 @@ const Account = () => {
     setError(false);
   };
 
+  // for errors due to validation requirements.
   const [error, setError] = useState(false);
+
   const handleEditAccount = (e) => {
     e.preventDefault();
     setErrorMessage(false);
@@ -79,7 +82,16 @@ const Account = () => {
         setErrorMessage,
         setSuccessMessage
       );
-      console.log('buuun');
+      if (passwords) {
+        changePassword(
+          passwords,
+          setShowSpinner,
+          setErrorMessage,
+          setSuccessMessage,
+          setUser,
+          setToken
+        );
+      }
     } else {
       setError('Please complete all the fields correctly.');
     }
@@ -265,8 +277,11 @@ const Account = () => {
                 </form>
                 <br />
                 {error && <ErrorMessage message={error} />}
-                {errorMessage && <ErrorMessage message={errorMessage} />}
-                {successMessage && <SuccessMessage message={successMessage} />}
+                {errorMessage ? (
+                  <ErrorMessage message={errorMessage} />
+                ) : (
+                  <SuccessMessage message={successMessage} />
+                )}
               </div>
             </div>
           </div>

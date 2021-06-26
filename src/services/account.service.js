@@ -24,3 +24,18 @@ export const updateData = async (data) => {
     return error.response;
   }
 };
+
+export const changePassword = async (data) => {
+  setToken();
+
+  try {
+    let response = await axios({
+      method: 'patch',
+      url: `${API_URL}/users/updatePassword`,
+      data,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
