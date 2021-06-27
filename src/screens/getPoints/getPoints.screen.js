@@ -35,7 +35,8 @@ const GetPoints = () => {
   const searchProduct = (number) => {
     if (number.localeCompare(barCodeNumber) !== 0) {
       setBarCodeNumber(number);
-      setProduct(false);
+      // setProduct(false);
+      setErrorMessage(false);
       scanProduct(number, setShowSpinner, setProduct, setErrorMessage);
     }
   };

@@ -233,9 +233,10 @@ const Products = () => {
                 </a>
               )}
             </div>
-          ) : (
-            <Spinner className="spinner" />
-          )}
+          ) : 
+           null         }
+            {showSpinner && <Spinner className="spinner2" />
+} 
         </div>
       </div>
       {showModal && (
