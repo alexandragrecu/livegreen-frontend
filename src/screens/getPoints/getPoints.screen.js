@@ -31,10 +31,13 @@ const GetPoints = () => {
   const [barCode, setBarCode] = useState(false);
   const [barCodeNumber, setBarCodeNumber] = useState(false);
   const [product, setProduct] = useState(false);
+  console.log('product', product);
+  console.log('barCodeNumber', barCodeNumber);
+
   const [clickedBtn, setClickedBtn] = useState(false);
   const searchProduct = (number) => {
-    console.log("number", number);
-    console.log("barCodeNumber", barCodeNumber);
+    console.log('number', number);
+    console.log('barCodeNumber', barCodeNumber);
     if (number.localeCompare(barCodeNumber) !== 0) {
       setBarCodeNumber(number);
       // setProduct(false);
@@ -49,8 +52,9 @@ const GetPoints = () => {
       searchProduct(barCode);
       setErrorMessage(false);
       setClickedBtn(false);
-      setProduct(false);
+      // setProduct(false);
     }
+    setErrorMessage(false);
   }, [barCode]);
 
   return (
@@ -61,8 +65,8 @@ const GetPoints = () => {
             <div className="col-md-6 col-xs-12">
               <div className="title-general-home">Scan a product</div>
               <div className="text-general-home">
-                Instructiuni de utilizare: abcdef gabcdefgabc defga bcdefgabcde
-                fgabcdefgabcdefgabcdefgabcdefg
+                Instructions for use: place the product barcode in front of the
+                laptop camera and wait a couple of seconds.
               </div>
               <div>
                 <p>Barcode: {barCodeNumber}</p>
