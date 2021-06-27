@@ -10,7 +10,10 @@ import ErrorMessage from '../../components/errorMessage/errorMessage.component';
 
 // images
 import img from './../../assets/images/salata-png.png';
+
+// utils functions
 import { getOffers, searchOffer } from '../../helpers/offers.utils';
+import {getUser} from './../../helpers/user.utils';
 
 const Offers = () => {
   const {
@@ -21,11 +24,16 @@ const Offers = () => {
     user,
     setErrorMessage,
     errorMessage,
+    setUser
   } = useContext(AppContext);
 
+  const getCurrentUser = () => {
+    getUser(setUser, setShowSpinner);
+  }
   /* eslint-disable */
   useEffect(() => {
     getOffers(setShowSpinner, setOffers, setErrorMessage, {}, false);
+    getCurrentUser();
   }, []);
 
   // load more button functionality

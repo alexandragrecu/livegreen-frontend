@@ -30,7 +30,7 @@ export const validatePoints = async (e, params, setShowSpinner, setErrorMessage,
   if (response) {
     if (response.status === 200) {
       setSuccessMessage(`You have successfully validated points for ${response.data.data.firstName} ${response.data.data.lastName}. `)
-      await getUsers(setUsers);
+      await getUsers(setUsers, setShowSpinner);
     } else {
       setErrorMessage('We could not validate points for this user. Please try again later.')
     }
