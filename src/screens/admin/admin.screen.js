@@ -19,7 +19,6 @@ import { loginStyle } from './../../assets/css/spinner';
 
 const AdminPage = () => {
   const {users, setUsers, showSpinner, setShowSpinner, errorMessage, successMessage, setErrorMessage, setSuccessMessage} = useContext(AppContext);
-  console.log('users', users);
   const getAllUsers = () => {
     getUsers(setUsers, setShowSpinner);
   };
@@ -29,6 +28,9 @@ const AdminPage = () => {
   const handleCancel = () => {
     setClickedUser(false);
   };
+
+  
+  /* eslint-disable */
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -45,7 +47,6 @@ const AdminPage = () => {
     setNoDataMessage(false);
   }
   const [userName, setUserName] = useState('');
-  console.log("userName", userName);
 
   const [noDataMessage, setNoDataMessage] = useState(false);
 

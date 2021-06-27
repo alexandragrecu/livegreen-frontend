@@ -44,7 +44,6 @@ export const validatePoints = async (params) => {
   const token = getToken();
 
   axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-  console.log('params', params);
   try {
     let response = await axios({
       method: 'patch',
@@ -63,7 +62,6 @@ export const getSpecificUser = async (params) => {
   const token = getToken();
 
   axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-  console.log('params', params);
   try {
     let response = await axios({
       method: 'get',
