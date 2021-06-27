@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 
 // import utils
-import { getUsers } from '../../helpers/user.utils';
+import { getUsers, getSpecificUser } from '../../helpers/user.utils';
 
 // import components
 import ValidationModal from './../../components/validationModal/validationModal.component';
@@ -18,7 +18,7 @@ import { loginStyle } from './../../assets/css/spinner';
 
 
 const AdminPage = () => {
-  const {users, setUsers, showSpinner, errorMessage, successMessage, setErrorMessage, setSuccessMessage} = useContext(AppContext);
+  const {users, setUsers, showSpinner, setShowSpinner, errorMessage, successMessage, setErrorMessage, setSuccessMessage} = useContext(AppContext);
   console.log('users', users);
   const getAllUsers = () => {
     getUsers(setUsers);
@@ -39,8 +39,25 @@ const AdminPage = () => {
     setSuccessMessage(false);
   }
 
+  const handleSearch = (e) => {
+    setUserName(e.target.value);
+    setErrorMessage(false);
+    setNoDataMessage(false);
+  }
+  const [userName, setUserName] = useState('');
+  console.log("userName", userName);
+
+  const [noDataMessage, setNoDataMessage] = useState(false);
+
   return (
     <div className="container">
+    <div>
+      <form className="search-product" action="" method="">
+        <input type="text" name="" onChange={(e) => handleSearch(e)} placeholder=" Search user..."/>
+        <input type="submit" name="" value="" onClick={(e) => getSpecificUser(e, {name: userName}, setShowSpinner, setNoDataMessage, setErrorMessage, setUsers) } className="submit-search-product"/>
+      </form>
+    </div>
+    <br/>
       <div className="container table-wrapper">
       {!showSpinner && successMessage && <SuccessMessage message={successMessage}/>}
       {!showSpinner && errorMessage && <ErrorMessage message={errorMessage} />}
@@ -60,6 +77,7 @@ const AdminPage = () => {
             </tr>
           </thead>
           <tbody>
+            {noDataMessage && <div><br />{noDataMessage}</div>}
             {users &&
               users.map((user, index) => (
                 <tr key={user._id}>

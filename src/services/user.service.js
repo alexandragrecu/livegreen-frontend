@@ -56,3 +56,22 @@ export const validatePoints = async (params) => {
     return error.response;
   }
 };
+
+// get specific user
+// get validate points
+export const getSpecificUser = async (params) => {
+  const token = getToken();
+
+  axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+  console.log('params', params);
+  try {
+    let response = await axios({
+      method: 'get',
+      url: `${API_URL}/users/specific-user`,
+      params,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
