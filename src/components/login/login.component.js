@@ -3,6 +3,9 @@ import React, { Fragment, useState, useContext } from 'react';
 // context
 import { AppContext } from './../../context/appContext';
 
+// history for redirecting to admin page
+import { useHistory } from 'react-router-dom';
+
 // components
 import Input from './../input/input.component';
 import ErrorMessage from './../errorMessage/errorMessage.component';
@@ -59,6 +62,8 @@ const Login = () => {
     setErrorMessage(false);
   };
 
+   const history = useHistory();
+
   // function called when user whats to submit the login form
   const submitLogin = async (e) => {
     e.preventDefault();
@@ -72,8 +77,10 @@ const Login = () => {
         setUser,
         setShowSpinner,
         setErrorMessage,
-        setToken
+        setToken,
+        history
       );
+    console.log("user after login", user);
     }
   };
 

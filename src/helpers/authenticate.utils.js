@@ -6,7 +6,8 @@ export const doLogin = async (
   setUser,
   setShowSpinner,
   setErrorMessage,
-  setToken
+  setToken,
+  history
 ) => {
   setShowSpinner(true);
 
@@ -15,6 +16,9 @@ export const doLogin = async (
     if (response.status === 200 && response.data.status === 'success') {
       setUser(response.data.data.user);
       setToken(response.data.token);
+      if (response.data.data.user.role === "admin") {
+        history.push('/admin');
+      }
     } else if (response.status === 401) {
       setErrorMessage('Incorrect email or password.');
     } else if (response.status === 400) {
