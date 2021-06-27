@@ -9,13 +9,15 @@ export const getUser = async (setUser) => {
   }
 };
 
-export const getUsers = async (setUsers) => {
+export const getUsers = async (setUsers, setShowSpinner) => {
+  setShowSpinner(true);
   let response = await userServices.getUsers();
   if (response) {
     if (response.status === 200) {
       setUsers(response.data.data.users);
     }
   }
+  setShowSpinner(false);
 };
 
 export const validatePoints = async (e, params, setShowSpinner, setErrorMessage, setSuccessMessage, setUsers) => {

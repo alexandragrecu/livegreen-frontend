@@ -21,7 +21,7 @@ const AdminPage = () => {
   const {users, setUsers, showSpinner, setShowSpinner, errorMessage, successMessage, setErrorMessage, setSuccessMessage} = useContext(AppContext);
   console.log('users', users);
   const getAllUsers = () => {
-    getUsers(setUsers);
+    getUsers(setUsers, setShowSpinner);
   };
 
   const [clickedUser, setClickedUser] = useState(false);
