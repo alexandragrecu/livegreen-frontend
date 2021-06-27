@@ -54,6 +54,9 @@ function AppProvider({ children }) {
   // center coordinates for map
   const [center, setCenter] = useState([44.4372808, 26.1000002]);
 
+  // users for admin pages
+  const [users, setUsers] = useState(false);
+
   /* eslint-disable */
   const store = {
     loginCredentials,
@@ -86,6 +89,8 @@ function AppProvider({ children }) {
     setArticles,
     center,
     setCenter,
+    users,
+    setUsers
   };
 
   const storeForProvider = useMemo(() => store, [store]);

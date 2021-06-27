@@ -1,13 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 // import utils
 import { getUsers } from '../../helpers/user.utils';
 
 // import components
 import ValidationModal from './../../components/validationModal/validationModal.component';
+import ErrorMessage from "./../../components/errorMessage/errorMessage.component";
+import SuccessMessage from "./../../components/successMessage/successMessage.component";
+import Spinner from './../../components/spinner/spinner.component'
+
+// context
+import { AppContext } from './../../context/appContext';
+
+
+// style for spinner
+import { loginStyle } from './../../assets/css/spinner';
+
 
 const AdminPage = () => {
-  const [users, setUsers] = useState(false);
+  const {users, setUsers, showSpinner, errorMessage, successMessage, setErrorMessage, setSuccessMessage} = useContext(AppContext);
   console.log('users', users);
   const getAllUsers = () => {
     getUsers(setUsers);
@@ -22,9 +33,20 @@ const AdminPage = () => {
     getAllUsers();
   }, []);
 
+  const handleCheck = (user) => {
+    setClickedUser(user);
+    setErrorMessage(false);
+    setSuccessMessage(false);
+  }
+
   return (
     <div className="container">
       <div className="container table-wrapper">
+      {!showSpinner && successMessage && <SuccessMessage message={successMessage}/>}
+      {!showSpinner && errorMessage && <ErrorMessage message={errorMessage} />}
+      <br />
+      <br />
+      {showSpinner && <Spinner css={loginStyle} className="backgroundSpinner" />}
         <table className="table table-striped table-hover" id="reports-table">
           <thead>
             <tr>
@@ -41,7 +63,9 @@ const AdminPage = () => {
             {users &&
               users.map((user, index) => (
                 <tr key={user._id}>
-                  <td>{index + 1}</td>
+                  <td  className={
+                      user.validatedPoints ? 'validate' : 'no-validate'
+                    }>{index + 1}</td>
                   <td>
                     {user.firstName} {user.lastName}
                   </td>
@@ -56,7 +80,7 @@ const AdminPage = () => {
                     {user.totalPoints}
                   </td>
                   <td
-                    onClick={() => setClickedUser(user)}
+                    onClick={() => handleCheck(user)}
                     className={
                       user.validatedPoints ? 'validate' : 'no-validate'
                     }
@@ -68,7 +92,7 @@ const AdminPage = () => {
           </tbody>
         </table>
       </div>
-      {clickedUser && (
+      {clickedUser && !successMessage && !errorMessage  && (
         <ValidationModal
           firstName={clickedUser.firstName}
           lastName={clickedUser.lastName}

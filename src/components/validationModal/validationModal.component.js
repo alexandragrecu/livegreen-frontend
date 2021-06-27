@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { validatePoints } from '../../helpers/user.utils';
 
-const validationModal = ({
+// context
+import { AppContext } from './../../context/appContext';
+
+
+const ValidationModal = ({
   firstName,
   lastName,
   points,
@@ -9,7 +13,9 @@ const validationModal = ({
   validate,
   id,
 }) => {
-  console.log(id);
+
+  const {setShowSpinner, setErrorMessage, setSuccessMessage, setUsers} = useContext(AppContext);
+
   return (
     <div id="myModallogin" className="modalValidation">
       <div className="modal-content" style={{ height: '200px' }}>
@@ -34,7 +40,7 @@ const validationModal = ({
                   type="submit"
                   name=""
                   value="Validate points"
-                  onClick={(e) => validatePoints(e, { id })}
+                  onClick={(e) => validatePoints(e, { id }, setShowSpinner, setErrorMessage, setSuccessMessage, setUsers)}
                 />
               </div>
             </form>
@@ -49,4 +55,4 @@ const validationModal = ({
   );
 };
 
-export default validationModal;
+export default ValidationModal;

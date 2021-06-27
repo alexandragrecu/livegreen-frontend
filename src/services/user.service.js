@@ -47,7 +47,7 @@ export const validatePoints = async (params) => {
   console.log('params', params);
   try {
     let response = await axios({
-      method: 'get',
+      method: 'patch',
       url: `${API_URL}/users/validatePoints`,
       params,
     });
