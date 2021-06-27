@@ -92,13 +92,18 @@ const Offers = () => {
                 </div>
                 <br />
                 <br />
-                <div className="text-general-home">
-                  Encuentra las mejores recetas para llevar tu dieta a otro
-                  nivel, sin necesidad de afectar su salud
-                  ssssssssssssssssssssssssssssssssssssssaaaaaaaaaaaaaaaaa
-                  aaaaaaaaaaaaa
-                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                {user.validatedPoints ? 
+                <div className="text-general-home successMessage">
+                  Congratulations! Your points are validated. Now you can choose any offer within the limits of the points you have.
+                  After you choose an offer you will receive an email with all the information about it.
                 </div>
+                :
+                <div className="text-general-home formHelp" >
+                  Note that your points have not been validated yet, so you can't get any offer. You need to go to the nearest recycling center with all the products you scanned or add and then a Live Green representative will validate your points.
+                  When your points are validated you will receive an email.
+                  
+                </div>
+                }
                 <div className="cta-scan">
                   <a className="btn-blue" href="/get-points">
                     Scan a product
@@ -217,9 +222,9 @@ const Offers = () => {
                           <a
                             href="#/"
                             onClick={
-                              !isAvailableOffer(offer.points)
-                                ? (e) => e.preventDefault()
-                                : () => setClickedOffer(offer)
+                              isAvailableOffer(offer.points) && user.validatedPoints
+                                ? () => setClickedOffer(offer)
+                                : (e) => e.preventDefault()
                             }
                           >
                             <i
