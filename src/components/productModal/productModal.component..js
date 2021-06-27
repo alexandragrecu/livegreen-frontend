@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // import images
 import img from './../../assets/images/salata-png.png';
@@ -21,6 +21,14 @@ const ProductModal = ({
   showSpinner,
 }) => {
   const [clickedBtn, setClickedBtn] = useState(false);
+
+  const getParamsToDefault = () => {
+    setErrorMessage(false);
+    setShowSpinner(false);
+  }
+  useEffect(() => {
+    getParamsToDefault()
+  }, [])
 
   return (
     <div id="myModalProduct" className="productModal">

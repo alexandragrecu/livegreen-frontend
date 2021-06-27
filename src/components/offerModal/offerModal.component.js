@@ -33,14 +33,14 @@ const OfferModal = ({ offer, setClickedOffer }) => {
 
   return (
     <div id="myModalProduct" className="productModal">
-      <div className="modal-content">
+      <div className="modal-content" style={{height: "300px"}}>
         <div className="modal-body">
           <span className="closeproduct" onClick={handleCloseModal}>
             &times;
           </span>
           <div className="wrapper-modal-offer">
             <div className="title-single-product-modal">{offer.name}</div>
-            {clickedBtn && showSpinner && <Spinner />}
+            {clickedBtn && showSpinner && <Spinner className="spinnerModal" />}
             {successMessage && <SuccessMessage message={successMessage} />}
             {errorMessage && <ErrorMessage message={errorMessage} />}
             {!clickedBtn && !showSpinner && (

@@ -33,6 +33,8 @@ const GetPoints = () => {
   const [product, setProduct] = useState(false);
   const [clickedBtn, setClickedBtn] = useState(false);
   const searchProduct = (number) => {
+    console.log("number", number);
+    console.log("barCodeNumber", barCodeNumber);
     if (number.localeCompare(barCodeNumber) !== 0) {
       setBarCodeNumber(number);
       // setProduct(false);

@@ -1709,6 +1709,10 @@ footer ul li a:hover {
   margin: 0 45%;
 }
 
+.spinnerModal {
+  margin: 0 30%;
+}
+
 
 @media screen and (min-width: 992px) {
   .search-product,
