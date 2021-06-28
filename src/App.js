@@ -15,6 +15,9 @@ import Products from './screens/products/products.screen';
 import Offers from './screens/offers/offers.screen';
 import Articles from './screens/articles/articles.screen';
 import AdminPage from './screens/admin/admin.screen';
+import Account from './screens/account/account.screen';
+import Profile from './screens/profile/profile.screen';
+import ProductOptions from './screens/productOptions/productOptions.screen';
 
 // import css files
 import './assets/css/style.css';
@@ -27,8 +30,6 @@ import WOW from 'wowjs';
 // import style for sticky navbar
 import { affix } from './assets/js/style';
 import { getProducts } from './helpers/products.utils';
-import Account from './screens/account/account.screen';
-import Profile from './screens/profile/profile.screen';
 
 const App = () => {
   const {
@@ -121,6 +122,10 @@ const App = () => {
 
           <Route path="/admin">
             <AdminPage />
+          </Route>
+
+          <Route path="/product-options">
+            <ProductOptions />
           </Route>
 
           <Route path="/">

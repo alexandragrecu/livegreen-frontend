@@ -188,13 +188,23 @@ const Products = () => {
         <div className="section-3-products wow fadeInUp" data-wow-duration="2s">
           <div className="container">
             <div className="row">
+              <br />
+              <br />
               <div className="listing-products-page">
                 {products.length &&
                   products.slice(0, nrProd).map((product) => (
                     <div key={product._id} className="col-md-4 col-xs-12">
                       <div className="box-single-product">
-                        <img src={img} alt="" />
-                        <h4>{product.name}</h4>
+                        <img
+                          src={product.image}
+                          style={{
+                            width: '150px',
+                            height: '150px',
+                            borderRadius: '100%',
+                          }}
+                          alt=""
+                        />
+                        <h4 style={{ marginTop: '40px' }}>{product.name}</h4>
                         <div className="info-product-single">
                           <div className="row">
                             <div className="col-md-6 col-xs-6">
@@ -222,6 +232,8 @@ const Products = () => {
                           </a>
                         </div>
                       </div>
+                      {/* <br /> */}
+                      {/* <br /> */}
                     </div>
                   ))}
               </div>

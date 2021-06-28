@@ -1630,6 +1630,13 @@ footer ul li a:hover {
   position: relative;
 }
 
+.section-1-products-options {
+  display: inline-block;
+  width: 100%;
+  padding: 150px 0;
+  position: relative;
+}
+
 .section-1-products::after {
   position: absolute;
   top: 0;
@@ -1713,7 +1720,6 @@ footer ul li a:hover {
   margin: 0 30%;
 }
 
-
 @media screen and (min-width: 992px) {
   .search-product,
   .filter-product {
@@ -1759,8 +1765,8 @@ footer ul li a:hover {
 }
 
 .box-single-product {
-  margin-bottom: 100px;
-  max-width: 250px;
+  margin-bottom: 200px;
+  width: 250px;
 }
 
 @media screen and (min-width: 1600px) {

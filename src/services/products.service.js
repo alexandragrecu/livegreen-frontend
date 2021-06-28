@@ -70,3 +70,46 @@ export const searchProduct = async (params) => {
     return error.response;
   }
 };
+
+export const createProduct = async (params) => {
+  setToken();
+  console.log(params);
+  try {
+    let response = await axios({
+      method: 'post',
+      url: `${API_URL}/products`,
+      data: params,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+export const updateProduct = async (params, data) => {
+  setToken();
+  console.log(params);
+  try {
+    let response = await axios({
+      method: 'patch',
+      url: `${API_URL}/products/${params.id}`,
+      data,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+export const deleteProduct = async (params) => {
+  setToken();
+  try {
+    let response = await axios({
+      method: 'delete',
+      url: `${API_URL}/products/${params.id}`,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};

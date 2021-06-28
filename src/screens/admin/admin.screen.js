@@ -1,24 +1,33 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, Fragment } from 'react';
 
 // import utils
 import { getUsers, getSpecificUser } from '../../helpers/user.utils';
 
 // import components
 import ValidationModal from './../../components/validationModal/validationModal.component';
-import ErrorMessage from "./../../components/errorMessage/errorMessage.component";
-import SuccessMessage from "./../../components/successMessage/successMessage.component";
-import Spinner from './../../components/spinner/spinner.component'
+import ErrorMessage from './../../components/errorMessage/errorMessage.component';
+import SuccessMessage from './../../components/successMessage/successMessage.component';
+import Spinner from './../../components/spinner/spinner.component';
 
+// import screens
+import ProductOptions from './../productOptions/productOptions.screen';
 // context
 import { AppContext } from './../../context/appContext';
-
 
 // style for spinner
 import { loginStyle } from './../../assets/css/spinner';
 
-
 const AdminPage = () => {
-  const {users, setUsers, showSpinner, setShowSpinner, errorMessage, successMessage, setErrorMessage, setSuccessMessage} = useContext(AppContext);
+  const {
+    users,
+    setUsers,
+    showSpinner,
+    setShowSpinner,
+    errorMessage,
+    successMessage,
+    setErrorMessage,
+    setSuccessMessage,
+  } = useContext(AppContext);
   const getAllUsers = () => {
     getUsers(setUsers, setShowSpinner);
   };
@@ -29,7 +38,6 @@ const AdminPage = () => {
     setClickedUser(false);
   };
 
-  
   /* eslint-disable */
   useEffect(() => {
     getAllUsers();
@@ -39,32 +47,58 @@ const AdminPage = () => {
     setClickedUser(user);
     setErrorMessage(false);
     setSuccessMessage(false);
-  }
+  };
 
   const handleSearch = (e) => {
     setUserName(e.target.value);
     setErrorMessage(false);
     setNoDataMessage(false);
-  }
+  };
   const [userName, setUserName] = useState('');
 
   const [noDataMessage, setNoDataMessage] = useState(false);
 
   return (
     <div className="container">
-    <div>
-      <form className="search-product" action="" method="">
-        <input type="text" name="" onChange={(e) => handleSearch(e)} placeholder=" Search user..."/>
-        <input type="submit" name="" value="" onClick={(e) => getSpecificUser(e, {name: userName}, setShowSpinner, setNoDataMessage, setErrorMessage, setUsers) } className="submit-search-product"/>
-      </form>
-    </div>
-    <br/>
+      <div>
+        <form className="search-product" action="" method="">
+          <input
+            type="text"
+            name=""
+            onChange={(e) => handleSearch(e)}
+            placeholder=" Search user..."
+          />
+          <input
+            type="submit"
+            name=""
+            value=""
+            onClick={(e) =>
+              getSpecificUser(
+                e,
+                { name: userName },
+                setShowSpinner,
+                setNoDataMessage,
+                setErrorMessage,
+                setUsers
+              )
+            }
+            className="submit-search-product"
+          />
+        </form>
+      </div>
+      <br />
       <div className="container table-wrapper">
-      {!showSpinner && successMessage && <SuccessMessage message={successMessage}/>}
-      {!showSpinner && errorMessage && <ErrorMessage message={errorMessage} />}
-      <br />
-      <br />
-      {showSpinner && <Spinner css={loginStyle} className="backgroundSpinner" />}
+        {!showSpinner && successMessage && (
+          <SuccessMessage message={successMessage} />
+        )}
+        {!showSpinner && errorMessage && (
+          <ErrorMessage message={errorMessage} />
+        )}
+        <br />
+        <br />
+        {showSpinner && (
+          <Spinner css={loginStyle} className="backgroundSpinner" />
+        )}
         <table className="table table-striped table-hover" id="reports-table">
           <thead>
             <tr>
@@ -78,13 +112,22 @@ const AdminPage = () => {
             </tr>
           </thead>
           <tbody>
-            {noDataMessage && <div><br />{noDataMessage}</div>}
+            {noDataMessage && (
+              <div>
+                <br />
+                {noDataMessage}
+              </div>
+            )}
             {users &&
               users.map((user, index) => (
                 <tr key={user._id}>
-                  <td  className={
+                  <td
+                    className={
                       user.validatedPoints ? 'validate' : 'no-validate'
-                    }>{index + 1}</td>
+                    }
+                  >
+                    {index + 1}
+                  </td>
                   <td>
                     {user.firstName} {user.lastName}
                   </td>
@@ -111,7 +154,7 @@ const AdminPage = () => {
           </tbody>
         </table>
       </div>
-      {clickedUser && !successMessage && !errorMessage  && (
+      {clickedUser && !successMessage && !errorMessage && (
         <ValidationModal
           firstName={clickedUser.firstName}
           lastName={clickedUser.lastName}
@@ -121,6 +164,10 @@ const AdminPage = () => {
           id={clickedUser._id}
         />
       )}
+      <br />
+      <br />
+      <br />
+      <ProductOptions />
     </div>
   );
 };

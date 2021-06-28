@@ -87,7 +87,8 @@ export const searchProduct = async (
   setProducts,
   setShowSpinner,
   setErrorMessage,
-  setNrProducts
+  setNrProducts,
+  setProduct
 ) => {
   setShowSpinner(true);
   let response = await productService.searchProduct(data);
@@ -104,6 +105,77 @@ export const searchProduct = async (
       setErrorMessage('An error occured! Please try again later!');
     }
   }
+  setShowSpinner(false);
+};
+
+export const createProduct = async (
+  e,
+  data,
+  setProducts,
+  setNrProducts,
+  setErrorMessage,
+  setShowSpinner,
+  setClickUpdate
+) => {
+  setClickUpdate(false);
+  setShowSpinner(true);
+  console.log('aaaa');
+  e.preventDefault();
+  data.points = parseInt(data.points, 10);
+  data.weight = parseInt(data.weight, 10);
+
+  console.log(data);
+  const response = await productService.createProduct(data);
+  console.log('response', response);
+  await getProducts(
+    {},
+    setProducts,
+    setNrProducts,
+    setErrorMessage,
+    setShowSpinner
+  );
+  setShowSpinner(false);
+};
+
+export const updateSpecificProduct = async (
+  params,
+  data,
+  setProducts,
+  setNrProducts,
+  setErrorMessage,
+  setShowSpinner
+) => {
+  setShowSpinner(true);
+  console.log('paraaams', params);
+  const response = await productService.updateProduct(params, data);
+  await getProducts(
+    {},
+    setProducts,
+    setNrProducts,
+    setErrorMessage,
+    setShowSpinner
+  );
+  setShowSpinner(false);
+};
+
+export const deleteSpecificProduct = async (
+  params,
+  setProducts,
+  setNrProducts,
+  setErrorMessage,
+  setShowSpinner
+) => {
+  setShowSpinner(true);
+
+  const response = await productService.deleteProduct(params);
+  console.log('response', response);
+  await getProducts(
+    {},
+    setProducts,
+    setNrProducts,
+    setErrorMessage,
+    setShowSpinner
+  );
 
   setShowSpinner(false);
 };
