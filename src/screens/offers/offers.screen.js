@@ -13,7 +13,7 @@ import img from './../../assets/images/salata-png.png';
 
 // utils functions
 import { getOffers, searchOffer } from '../../helpers/offers.utils';
-import {getUser} from './../../helpers/user.utils';
+import { getUser } from './../../helpers/user.utils';
 
 const Offers = () => {
   const {
@@ -24,12 +24,12 @@ const Offers = () => {
     user,
     setErrorMessage,
     errorMessage,
-    setUser
+    setUser,
   } = useContext(AppContext);
 
   const getCurrentUser = () => {
     getUser(setUser, setShowSpinner);
-  }
+  };
   /* eslint-disable */
   useEffect(() => {
     getOffers(setShowSpinner, setOffers, setErrorMessage, {}, false);
@@ -81,29 +81,31 @@ const Offers = () => {
               <div className="col-md-6 col-xs-12">
                 <div className="title-general-home">Offers</div>
                 <div className="text-general-home">
-                  Encuentra las mejores recetas para llevar tu dieta a otro
-                  nivel, sin necesidad de afectar su salud
-                  ssssssssssssssssssssssssssssssssssssssaaaaaaaaaaaaaa
-                  aaaaaaaaaaaaa
-                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting
                 </div>
                 <br />
                 <br />
-                {user.validatedPoints ? 
-                <div className="text-general-home successMessage">
-                  Congratulations! Your points are validated. Now you can choose any offer within the limits of the points you have.
-                  After you choose an offer you will receive an email with all the information about it.
-                </div>
-                :
-                <div className="text-general-home formHelp" >
-                  Note that your points have not been validated yet, so you can't get any offer. You need to go to the nearest recycling center with all the products you scanned or add and then a Live Green representative will validate your points.
-                  When your points are validated you will receive an email.
-                  
-                </div>
-                }
+                {user.validatedPoints ? (
+                  <div className="text-general-home successMessage">
+                    Congratulations! Your points are validated. Now you can
+                    choose any offer within the limits of the points you have.
+                    After you choose an offer you will receive an email with all
+                    the information about it.
+                  </div>
+                ) : (
+                  <div className="text-general-home formHelp">
+                    Note that your points have not been validated yet, so you
+                    can't get any offer. You need to go to the nearest recycling
+                    center with all the products you scanned or add and then a
+                    Live Green representative will validate your points. When
+                    your points are validated you will receive an email.
+                  </div>
+                )}
                 <div className="cta-scan">
                   <a className="btn-blue" href="/get-points">
                     Scan a product
@@ -222,7 +224,8 @@ const Offers = () => {
                           <a
                             href="#/"
                             onClick={
-                              isAvailableOffer(offer.points) && user.validatedPoints
+                              isAvailableOffer(offer.points) &&
+                              user.validatedPoints
                                 ? () => setClickedOffer(offer)
                                 : (e) => e.preventDefault()
                             }

@@ -66,10 +66,10 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                   <div className="elements-column">
                     <div className="box-section-general">
                       <img src={bec} alt="" />
-                      <h3>Start Magic Calculator</h3>
+                      <h3>How Live Green works</h3>
                       <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod{' '}
+                        Live Green inspires and rewards smarter, everyday
+                        choices for a more sustainable future.
                       </p>
                     </div>
                   </div>
@@ -78,13 +78,15 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                 <div className="col-md-6 col-xs-12">
                   <div className="box-text-general">
                     <div className="title-general-home">
-                      How it works? <span>lorem ipsum dolor sit amet</span>
+                      How Live Green works? <span>Is it hard to recycle?</span>
                     </div>
                     <div className="text-general-home">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin egestas accumsan odio, cursus laoreet mauris
-                      porttitor non. Aliquam eu neque nibh. Aenean non
-                      pellentesque justo.
+                      Live Green helps create a more sustainable future by
+                      rewarding people for taking everyday green actions with
+                      discounts and deals from local and national businesses.
+                      It's really pretty simple: you select a green action you
+                      want to be rewarded for and each time we have confirmation
+                      that you've done it you can choose a reward.
                     </div>
                   </div>
                 </div>
@@ -100,13 +102,13 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                 <div className="col-md-6 col-xs-12">
                   <div className="box-text-general">
                     <div className="title-general-home">
-                      How it works? <span>lorem ipsum dolor sit amet</span>
+                      How it works? <span></span>
                     </div>
                     <div className="text-general-home">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin egestas accumsan odio, cursus laoreet mauris
-                      porttitor non. Aliquam eu neque nibh. Aenean non
-                      pellentesque justo.
+                      Live Green works by measuring the amount of kerbside dry
+                      waste each home recycles and then converting it into
+                      points, redeemable in a range of local and national
+                      retailers
                     </div>
                   </div>
                 </div>
@@ -115,10 +117,11 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                   <div className="elements-column">
                     <div className="box-section-general">
                       <img src={grup1} alt="" />
-                      <h3>Start Magic Calculator</h3>
+                      <h3>How it works?</h3>
                       <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod{' '}
+                        First, you will need to sign up for Live Green. Once you
+                        are registered, head over to the Get Points Tab to start
+                        earning points!
                       </p>
                     </div>
                   </div>
@@ -139,19 +142,17 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                 <div className="col-md-6 col-xs-12">
                   <div className="box-text-general">
                     <div className="title-general-home">
-                      Get rewards <span>el dolor sit amet</span>
+                      Get rewards <span>, we have a lot of surprises!</span>
                     </div>
+                    <div className="text-general-home"></div>
                     <div className="text-general-home">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin egestas accumsan odio, cursus laoreet mauris
-                      porttitor non. Aliquam eu neque nibh. Aenean non
-                      pellentesque justo.
-                    </div>
-                    <div className="text-general-home">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin egestas accumsan odio, cursus laoreet mauris
-                      porttitor non. Aliquam eu neque nibh. Aenean non
-                      pellentesque justo.
+                      You can earn points from Live Green in a variety of ways.
+                      This includes home recycling, using points code on
+                      specially marked packages, by learning or reading
+                      Articles, referring a friend, or completing a certain
+                      online action. These update often so you will need to
+                      check in or view your occasional emails from Recyclebank
+                      to participate in the new offers.
                     </div>
                   </div>
                 </div>
@@ -169,10 +170,10 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                   <div className="elements-column">
                     <div className="box-section-general">
                       <img src={bec} alt="" />
-                      <h3>Start Magic Calculator</h3>
+                      <h3>Some words about us</h3>
                       <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod{' '}
+                        We have one question in mind: could education and
+                        incentives get people to recycle more?
                       </p>
                     </div>
                   </div>
@@ -181,49 +182,14 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                 <div className="col-md-6 col-xs-12">
                   <div className="box-text-general">
                     <div className="title-general-home">
-                      About us <span>lorem ipsum dolor sit amet</span>
+                      About us <span>Our Mission</span>
                     </div>
                     <div className="text-general-home">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin egestas accumsan odio, cursus laoreet mauris
-                      porttitor non. Aliquam eu neque nibh. Aenean non
-                      pellentesque justo.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="section-6-homepage wow fadeInUp"
-            data-wow-duration="2s"
-          >
-            <div className="container">
-              <div className="row">
-                <div className="col-md-6 col-xs-12">
-                  <div className="box-text-general">
-                    <div className="title-general-home">
-                      How it works? <span>lorem ipsum dolor sit amet</span>
-                    </div>
-                    <div className="text-general-home">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin egestas accumsan odio, cursus laoreet mauris
-                      porttitor non. Aliquam eu neque nibh. Aenean non
-                      pellentesque justo.
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-1 col-xs-12"></div>
-                <div className="col-md-5 col-xs-12">
-                  <div className="elements-column">
-                    <div className="box-section-general">
-                      <img src={bec} alt="" />
-                      <h3>Start Magic Calculator</h3>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod{' '}
-                      </p>
+                      Live Green was developed to change the way we think about
+                      sustainability and recycling. We believe that personal
+                      actions, can and do make a big difference; that people
+                      prefer the carrot over the stick when it comes
+                      sustainability.
                     </div>
                   </div>
                 </div>
