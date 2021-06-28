@@ -186,54 +186,53 @@ const Products = () => {
         </div>
 
         <div className="section-3-products wow fadeInUp" data-wow-duration="2s">
-          {!showSpinner ? (
-            <div className="container">
-              <div className="row">
-                <div className="listing-products-page">
-                  {products.length &&
-                    products.slice(0, nrProd).map((product) => (
-                      <div key={product._id} className="col-md-4 col-xs-12">
-                        <div className="box-single-product">
-                          <img src={img} alt="" />
-                          <h4>{product.name}</h4>
-                          <div className="info-product-single">
-                            <div className="row">
-                              <div className="col-md-6 col-xs-6">
-                                <strong className="number-info-points-single">
-                                  {product.points}
-                                </strong>
-                                <p>Points</p>
-                              </div>
-                              <div className="col-md-6 col-xs-6">
-                                <strong className="gramaj">
-                                  {' '}
-                                  <span>{product.weight}</span> g
-                                </strong>
-                                <p>Weight</p>
-                              </div>
+          <div className="container">
+            <div className="row">
+              <div className="listing-products-page">
+                {products.length &&
+                  products.slice(0, nrProd).map((product) => (
+                    <div key={product._id} className="col-md-4 col-xs-12">
+                      <div className="box-single-product">
+                        <img src={img} alt="" />
+                        <h4>{product.name}</h4>
+                        <div className="info-product-single">
+                          <div className="row">
+                            <div className="col-md-6 col-xs-6">
+                              <strong className="number-info-points-single">
+                                {product.points}
+                              </strong>
+                              <p>Points</p>
+                            </div>
+                            <div className="col-md-6 col-xs-6">
+                              <strong className="gramaj">
+                                {' '}
+                                <span>{product.weight}</span> g
+                              </strong>
+                              <p>Weight</p>
                             </div>
                           </div>
+                        </div>
 
-                          <div className="cta-to-product">
-                            <a href="#/" onClick={() => handleClick(product)}>
-                              <i
-                                className="fa fa-arrow-right"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </div>
+                        <div className="cta-to-product">
+                          <a href="#/" onClick={() => handleClick(product)}>
+                            <i
+                              className="fa fa-arrow-right"
+                              aria-hidden="true"
+                            ></i>
+                          </a>
                         </div>
                       </div>
-                    ))}
-                </div>
+                    </div>
+                  ))}
               </div>
-              {displayBtn && nrProducts && (
-                <a href="#/" onClick={handleLoadMore} id="seeMoreProducts">
-                  Load More Products
-                </a>
-              )}
             </div>
-          ) : null}
+            {displayBtn && nrProducts && !showSpinner && (
+              <a href="#/" onClick={handleLoadMore} id="seeMoreProducts">
+                Load More Products
+              </a>
+            )}
+          </div>
+
           {showSpinner && !showModal && <Spinner className="spinner2" />}
         </div>
       </div>

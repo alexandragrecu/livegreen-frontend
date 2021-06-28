@@ -47,14 +47,18 @@ const GetPoints = () => {
   };
 
   /* eslint-disable */
+
+  const getParamsToDefault = () => {
+    setErrorMessage(false);
+    setClickedBtn(false);
+  };
+
   useEffect(() => {
     if (barCode) {
       searchProduct(barCode);
-      setErrorMessage(false);
-      setClickedBtn(false);
+      getParamsToDefault();
       // setProduct(false);
     }
-    setErrorMessage(false);
   }, [barCode]);
 
   return (
@@ -74,7 +78,7 @@ const GetPoints = () => {
               <br />
               <br />
               <br />
-              {!showSpinner && product && (
+              {!showSpinner && product && !errorMessage && (
                 <div className="box-add-to-scan">
                   <div className="title-product">Product: {product.name}</div>
 

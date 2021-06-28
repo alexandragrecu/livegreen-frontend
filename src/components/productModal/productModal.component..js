@@ -25,10 +25,10 @@ const ProductModal = ({
   const getParamsToDefault = () => {
     setErrorMessage(false);
     setShowSpinner(false);
-  }
+  };
   useEffect(() => {
-    getParamsToDefault()
-  }, [])
+    getParamsToDefault();
+  }, []);
 
   return (
     <div id="myModalProduct" className="productModal">
@@ -50,30 +50,32 @@ const ProductModal = ({
                 : product.name}
             </div>
             {showSpinner && <Spinner className="spinner" />}
-            <div
-              className={
-                clickedBtn && !errorMessage
-                  ? 'hidden info-product-single'
-                  : 'info-product-single'
-              }
-            >
-              <div className="row">
-                <div className="col-md-6 col-xs-6">
-                  <strong className="number-info-points-single">
-                    {product.points}
-                  </strong>
-                  <p>Points</p>
-                </div>
-                <div className="col-md-6 col-xs-6">
-                  <strong className="gramaj">
-                    {' '}
-                    <span>{product.weight}</span> g
-                  </strong>
-                  <p>Weight</p>
+            {!showSpinner && (
+              <div
+                className={
+                  clickedBtn && !errorMessage
+                    ? 'hidden info-product-single'
+                    : 'info-product-single'
+                }
+              >
+                <div className="row">
+                  <div className="col-md-6 col-xs-6">
+                    <strong className="number-info-points-single">
+                      {product.points}
+                    </strong>
+                    <p>Points</p>
+                  </div>
+                  <div className="col-md-6 col-xs-6">
+                    <strong className="gramaj">
+                      {' '}
+                      <span>{product.weight}</span> g
+                    </strong>
+                    <p>Weight</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            {!clickedBtn && !errorMessage ? (
+            )}
+            {!clickedBtn && !errorMessage && !showSpinner ? (
               <a
                 href="#/"
                 className="btn-blue"
