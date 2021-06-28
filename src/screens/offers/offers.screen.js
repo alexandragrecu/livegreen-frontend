@@ -81,12 +81,12 @@ const Offers = () => {
               <div className="col-md-6 col-xs-12">
                 <div className="title-general-home">Offers</div>
                 <div className="text-general-home">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting
+                  Choose an offer from your city! You can choose from a variety
+                  of offers, for example bus tickets, subway tickets, discounts
+                  at certain local businesses, restaurants discounts, books and
+                  environmentally friendly items. Don't forget that you can
+                  choose an offer only after you have been to the recycling
+                  center and your points have been validated.
                 </div>
                 <br />
                 <br />
@@ -245,7 +245,7 @@ const Offers = () => {
                         Titlu <span>oferta</span>
                       </div>
                       <div className="text-general-home">
-                        Detalii: Lorem ipsum dolor sit amet, consectetur
+                        Details: Lorem ipsum dolor sit amet, consectetur
                         adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam,
                         quis nostrud exercitation ullamco laboris nisi ut

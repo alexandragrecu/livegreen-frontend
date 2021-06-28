@@ -212,16 +212,18 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                   </div>
                   <div className="text-general-home">
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin egestas accumsan odio, cursus laoreet mauris
-                      porttitor non. Aliquam eu neque nibh. Aenean non
-                      pellentesque justo.
+                      Live Green was developed to change the way we think about
+                      sustainability and recycling. We believe that personal
+                      actions, can and do make a big difference; that people
+                      prefer the carrot over the stick when it comes
+                      sustainability.
                     </p>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin egestas accumsan odio, cursus laoreet mauris
-                      porttitor non. Aliquam eu neque nibh. Aenean non
-                      pellentesque justo.
+                      Live Green was developed to change the way we think about
+                      sustainability and recycling. We believe that personal
+                      actions, can and do make a big difference, that people
+                      prefer the carrot over the stick when it comes
+                      sustainability.
                     </p>
                   </div>
                   <div className="info-section-1-logged">
@@ -272,10 +274,8 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                       <span>reducere restaurant Bucuresti: 300 points</span>
                     </div>
                     <div className="text-general-home">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin egestas accumsan odio, cursus laoreet mauris
-                      porttitor non. Aliquam eu neque nibh. Aenean non
-                      pellentesque justo.
+                      Recycle as many products as possible to reach 300 points
+                      and you can receive discounts at restaurants in Bucharest.
                     </div>
                   </div>
                 </div>
@@ -292,10 +292,8 @@ const Home = ({ howRef, rewardsRef, aboutRef }) => {
                       <span>10 calatorii metrou Bucuresti: 100 points</span>
                     </div>
                     <div className="text-general-home">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin egestas accumsan odio, cursus laoreet mauris
-                      porttitor non. Aliquam eu neque nibh. Aenean non
-                      pellentesque justo.
+                      Recycle as many products as possible to reach 100 points
+                      and you can receive a card with 10 free subway trips.
                     </div>
                   </div>
                 </div>

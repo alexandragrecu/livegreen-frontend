@@ -73,7 +73,12 @@ const Articles = () => {
             <div className="row">
               {articles &&
                 articles.slice(0, nrDisplayed).map((article) => (
-                  <div key={article._id} className="articol-1 articol-general">
+                  <div
+                    data-wow-duration="2s"
+                    key={article._id}
+                    className="articol-1 articol-general wow
+                    fadeInUp"
+                  >
                     <div className="col-md-6 col-xs-12">
                       <img src={article.image} alt="" />
                     </div>

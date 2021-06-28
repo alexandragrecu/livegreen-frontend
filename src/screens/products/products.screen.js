@@ -96,12 +96,12 @@ const Products = () => {
             <div className="row">
               <div className="col-md-6 col-xs-12">
                 <div className="beforetitle-general-home">
-                  La app de dieta, perfecta para ti
+                  Search products and get points!
                 </div>
                 <div className="title-general-home">Products</div>
                 <div className="text-general-home">
-                  Encuentra las mejores recetas para llevar tu dieta a otro
-                  nivel, sin necesidad de afectar su salud
+                  If you could not scan the product or the product does not have
+                  a barcode, you can search for it here and add points.
                 </div>
               </div>
               <div className="col-md-6 col-xs-12"></div>
