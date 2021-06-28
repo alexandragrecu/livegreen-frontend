@@ -212,9 +212,11 @@ const Offers = () => {
                                       : 'formHelp'
                                   }
                                 >
-                                  {isAvailableOffer(offer.points)
-                                    ? 'You can get this offer!'
-                                    : 'You cannot get this offer!'}
+                                  {user.validatedPoints
+                                    ? isAvailableOffer(offer.points)
+                                      ? 'You can get this offer!'
+                                      : 'You cannot get this offer!'
+                                    : null}
                                 </span>
                               </strong>
                             </div>
