@@ -196,7 +196,7 @@ const Products = () => {
                     <div key={product._id} className="col-md-4 col-xs-12">
                       <div className="box-single-product">
                         <img
-                          src={product.image}
+                          src={product.image === 'none' ? img : product.image}
                           style={{
                             width: '150px',
                             height: '150px',

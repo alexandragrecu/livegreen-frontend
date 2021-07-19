@@ -28,9 +28,11 @@ const GetPoints = () => {
     errorMessage,
     setErrorMessage,
   } = useContext(AppContext);
+
   const [barCode, setBarCode] = useState(false);
   const [barCodeNumber, setBarCodeNumber] = useState(false);
   const [product, setProduct] = useState(false);
+
   console.log('product', product);
   console.log('barCodeNumber', barCodeNumber);
 

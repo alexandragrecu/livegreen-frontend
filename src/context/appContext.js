@@ -57,6 +57,13 @@ function AppProvider({ children }) {
   // users for admin pages
   const [users, setUsers] = useState(false);
 
+  // admin page
+  const [modifiedSection, setModifiedSection] = useState({
+    users: false,
+    products: false,
+    offers: false,
+  });
+
   /* eslint-disable */
   const store = {
     loginCredentials,
@@ -90,7 +97,9 @@ function AppProvider({ children }) {
     center,
     setCenter,
     users,
-    setUsers
+    setUsers,
+    modifiedSection,
+    setModifiedSection,
   };
 
   const storeForProvider = useMemo(() => store, [store]);

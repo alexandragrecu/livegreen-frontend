@@ -16,6 +16,7 @@ import Spinner from '../../components/spinner/spinner.component';
 // style for spinner
 import { loginStyle } from './../../assets/css/spinner';
 import ErrorMessage from '../../components/errorMessage/errorMessage.component';
+import SuccessMessage from '../../components/successMessage/successMessage.component';
 
 const ProductOptions = () => {
   const {
@@ -29,11 +30,12 @@ const ProductOptions = () => {
     setShowSpinner,
     errorMessage,
     setErrorMessage,
+    successMessage,
+    setSuccessMessage,
+    modifiedSection,
+    setModifiedSection,
   } = useContext(AppContext);
   const [products, setProducts] = useState([]);
-  const [clickDelete, setClickDelete] = useState(false);
-  console.log('products', products);
-
   const [product, setProduct] = useState({
     name: '',
     qrCode: '',
@@ -41,7 +43,6 @@ const ProductOptions = () => {
     weight: '',
     image: 'none',
   });
-  console.log('product', product);
 
   const getAllProducts = () => {
     getProducts(
@@ -69,6 +70,7 @@ const ProductOptions = () => {
   };
 
   const deleteProduct = (product) => {
+    setModifiedSection({ users: false, products: true, offers: false });
     deleteSpecificProduct(
       {
         id: product._id,
@@ -76,6 +78,8 @@ const ProductOptions = () => {
       setProducts,
       setNrProducts,
       setErrorMessage,
+      errorMessage,
+      setSuccessMessage,
       setShowSpinner
     );
   };
@@ -84,17 +88,20 @@ const ProductOptions = () => {
 
   const submitForm = (e, product) => {
     e.preventDefault();
-
+    setSuccessMessage(false);
+    setErrorMessage(false);
     if (clickUpdate) {
-      console.log('update...');
       updateSpecificProduct(
         { id: id },
         product,
         setProducts,
         setNrProducts,
         setErrorMessage,
+        errorMessage,
+        setSuccessMessage,
         setShowSpinner
       );
+      setModifiedSection({ users: false, products: true, offers: false });
       setClickUpdate(false);
       //   setProduct({});
       setProduct({
@@ -105,14 +112,15 @@ const ProductOptions = () => {
         image: 'none',
       });
     } else {
-      console.log('create...');
-
+      setModifiedSection({ users: false, products: true, offers: true });
       createProduct(
         e,
         product,
         setProducts,
         setNrProducts,
         setErrorMessage,
+        errorMessage,
+        setSuccessMessage,
         setShowSpinner,
         setProduct,
         setClickUpdate
@@ -124,12 +132,10 @@ const ProductOptions = () => {
         weight: '',
         image: 'none',
       });
-      setClickUpdate(true);
       setClickUpdate(false);
     }
   };
   const [clickUpdate, setClickUpdate] = useState(false);
-  console.log(clickUpdate);
 
   const validateBarCode = (barCode) => {
     if (/^\d+$/.test(barCode) && barCode.length > 9) {
@@ -156,11 +162,16 @@ const ProductOptions = () => {
 
       <div className="row" style={{ display: 'flex' }}>
         <div className="container table-wrapper">
-          {/* {!showSpinner && successMessage && <SuccessMessage message={successMessage}/>}
-      {!showSpinner && errorMessage && <ErrorMessage message={errorMessage} />} */}
+          {!showSpinner && successMessage && modifiedSection.products && (
+            <SuccessMessage message={successMessage} />
+          )}
+          {!showSpinner && errorMessage && (
+            <ErrorMessage message={errorMessage} />
+          )}
           {showSpinner && (
             <Spinner css={loginStyle} className="backgroundSpinner" />
           )}
+          <br />
           <table className="table table-striped table-hover" id="reports-table">
             <thead>
               <tr>

@@ -114,27 +114,40 @@ export const createProduct = async (
   setProducts,
   setNrProducts,
   setErrorMessage,
+  errorMessage,
+  setSuccessMessage,
   setShowSpinner,
   setClickUpdate
 ) => {
   setClickUpdate(false);
   setShowSpinner(true);
+  setErrorMessage(false);
   console.log('aaaa');
   e.preventDefault();
   data.points = parseInt(data.points, 10);
   data.weight = parseInt(data.weight, 10);
 
-  console.log(data);
   if (data.points > 0 && data.weight > 0) {
     const response = await productService.createProduct(data);
-    console.log('response', response);
-    await getProducts(
-      {},
-      setProducts,
-      setNrProducts,
-      setErrorMessage,
-      setShowSpinner
-    );
+    if (response) {
+      if (response.status === 201 && response.data.status === 'success') {
+        console.log('response', response);
+        await getProducts(
+          {},
+          setProducts,
+          setNrProducts,
+          setErrorMessage,
+          setShowSpinner
+        );
+        if (!errorMessage) {
+          setSuccessMessage('Product successfully added!');
+        }
+      } else {
+        setErrorMessage('An error occured! Please try again!');
+      }
+    } else {
+      setErrorMessage('An error occured! Please try again!');
+    }
   }
   setShowSpinner(false);
 };
@@ -145,19 +158,38 @@ export const updateSpecificProduct = async (
   setProducts,
   setNrProducts,
   setErrorMessage,
+  errorMessage,
+  setSuccessMessage,
   setShowSpinner
 ) => {
   setShowSpinner(true);
+  setErrorMessage(false);
   console.log('paraaams', params);
   if (data.points > 0 && data.weight > 0) {
     const response = await productService.updateProduct(params, data);
-    await getProducts(
-      {},
-      setProducts,
-      setNrProducts,
-      setErrorMessage,
-      setShowSpinner
-    );
+    console.log('responseee', response);
+    if (response) {
+      if (response.status === 200 && response.data.status === 'success') {
+        await getProducts(
+          {},
+          setProducts,
+          setNrProducts,
+          setErrorMessage,
+          setShowSpinner
+        );
+        if (!errorMessage) {
+          setSuccessMessage('Product successfully updated!');
+        }
+      } else {
+        setErrorMessage(
+          'An error while updating the product. Please try again.'
+        );
+      }
+    } else {
+      setErrorMessage(
+        'An error while updating the product. Please try again later.'
+      );
+    }
   }
   setShowSpinner(false);
 };
@@ -167,19 +199,31 @@ export const deleteSpecificProduct = async (
   setProducts,
   setNrProducts,
   setErrorMessage,
+  errorMessage,
+  setSuccessMessage,
   setShowSpinner
 ) => {
   setShowSpinner(true);
-
+  setErrorMessage(false);
   const response = await productService.deleteProduct(params);
-  console.log('response', response);
-  await getProducts(
-    {},
-    setProducts,
-    setNrProducts,
-    setErrorMessage,
-    setShowSpinner
-  );
+  console.log('response for delete', response);
+  if (response) {
+    if (response.status === 204) {
+      await getProducts(
+        {},
+        setProducts,
+        setNrProducts,
+        setErrorMessage,
+        setShowSpinner
+      );
+
+      setSuccessMessage('Product successfully deleted.');
+    } else {
+      setErrorMessage('An error occured. Please try again later.');
+    }
+  } else {
+    setErrorMessage('An error occured. Please try again later.');
+  }
 
   setShowSpinner(false);
 };

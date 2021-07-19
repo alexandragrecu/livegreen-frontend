@@ -41,7 +41,7 @@ const ProductModal = ({
             <div className="image-single-product-modal">
               {!clickedBtn && !errorMessage && (
                 <img
-                  src={product.image}
+                  src={product.image !== 'none' ? product.image : img}
                   style={{
                     width: '150px',
                     height: '150px',

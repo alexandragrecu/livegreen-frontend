@@ -27,6 +27,8 @@ const AdminPage = () => {
     successMessage,
     setErrorMessage,
     setSuccessMessage,
+    modifiedSection,
+    setModifiedSection,
   } = useContext(AppContext);
   const getAllUsers = () => {
     getUsers(setUsers, setShowSpinner);
@@ -47,6 +49,7 @@ const AdminPage = () => {
     setClickedUser(user);
     setErrorMessage(false);
     setSuccessMessage(false);
+    setModifiedSection({ users: true, products: false, offers: true });
   };
 
   const handleSearch = (e) => {
@@ -89,7 +92,7 @@ const AdminPage = () => {
       <p className="subtitle">Users</p>
       <br />
       <div className="container table-wrapper">
-        {!showSpinner && successMessage && (
+        {!showSpinner && successMessage && modifiedSection.users && (
           <SuccessMessage message={successMessage} />
         )}
         {!showSpinner && errorMessage && (
