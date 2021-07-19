@@ -131,6 +131,8 @@ const ProductOptions = () => {
   console.log(clickUpdate);
   return (
     <div className="container">
+      <p className="subtitle-products">Products</p>
+
       <div className="row" style={{ display: 'flex' }}>
         <div className="container table-wrapper">
           {/* {!showSpinner && successMessage && <SuccessMessage message={successMessage}/>}

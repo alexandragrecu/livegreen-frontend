@@ -86,6 +86,7 @@ const AdminPage = () => {
           />
         </form>
       </div>
+      <p className="subtitle">Users</p>
       <br />
       <div className="container table-wrapper">
         {!showSpinner && successMessage && (
@@ -99,7 +100,11 @@ const AdminPage = () => {
         {showSpinner && (
           <Spinner css={loginStyle} className="backgroundSpinner" />
         )}
-        <table className="table table-striped table-hover" id="reports-table">
+        <table
+          className="table table-striped table-hover"
+          id="reports-table"
+          style={{ marginTop: '-20px' }}
+        >
           <thead>
             <tr>
               <th>Nr</th>
