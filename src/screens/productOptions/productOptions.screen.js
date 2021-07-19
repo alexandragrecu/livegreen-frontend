@@ -13,6 +13,9 @@ import { AppContext } from './../../context/appContext';
 
 import Spinner from '../../components/spinner/spinner.component';
 
+// import utils functions
+import * as productUtils from './../../helpers/products.utils';
+
 // style for spinner
 import { loginStyle } from './../../assets/css/spinner';
 import ErrorMessage from '../../components/errorMessage/errorMessage.component';
@@ -156,6 +159,30 @@ const ProductOptions = () => {
     points: false,
     weight: false,
   });
+
+  const [searchedProduct, setSearchedProduct] = useState('');
+
+  const searchProduct = (e) => {
+    e.preventDefault();
+    setSearchedProduct(e.target.value);
+  };
+
+  const searchSpecificProduct = (e) => {
+    e.preventDefault();
+
+    productUtils.searchProduct(
+      { name: searchedProduct },
+      setProducts,
+      setShowSpinner,
+      setErrorMessage,
+      setNrProducts,
+      setProduct
+    );
+
+    setErrorMessage(false);
+    setSuccessMessage(false);
+  };
+  console.log('products', products);
   return (
     <div className="container">
       <p className="subtitle-products">Products</p>
@@ -186,6 +213,7 @@ const ProductOptions = () => {
             <tbody>
               {/* {noDataMessage && <div><br />{noDataMessage}</div>} */}
               {products &&
+                !errorMessage &&
                 products.map((product, index) => (
                   <tr key={product._id}>
                     <td>{index + 1}</td>
@@ -218,8 +246,17 @@ const ProductOptions = () => {
           <br />
           <br />
           <form className="search-product" action="" method="">
-            <input type="text" placeholder=" Search a product..." />
-            <input type="submit" name="" className="submit-search-product" />
+            <input
+              type="text"
+              placeholder=" Search a product..."
+              onChange={(e) => searchProduct(e)}
+            />
+            <input
+              type="submit"
+              name=""
+              className="submit-search-product"
+              onClick={(e) => searchSpecificProduct(e)}
+            />
           </form>
           <form className="filter-product" action="" method="">
             <label>
