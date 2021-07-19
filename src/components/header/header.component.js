@@ -127,8 +127,23 @@ const Header = ({ executeScroll, howRef, rewardsRef, aboutRef }) => {
             </div>
           )}
 
+          {/* user is admin */}
+
+          {user && user.role === 'admin' && (
+            <div className="col-md-9 hidden-sm hidden-xs col-xs-12">
+              <ul className="header-menu-center">
+                <li onClick={logout}>
+                  {' '}
+                  <a className="logout" href="#/">
+                    Logout
+                  </a>{' '}
+                </li>
+              </ul>
+            </div>
+          )}
+
           {/* if user is logged */}
-          {user && (
+          {user && user.role === 'user' && (
             <div className="col-md-9 hidden-sm hidden-xs col-xs-12">
               <ul className="header-menu-center">
                 <li>
