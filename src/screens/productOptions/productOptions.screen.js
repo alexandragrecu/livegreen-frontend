@@ -15,6 +15,7 @@ import Spinner from '../../components/spinner/spinner.component';
 
 // style for spinner
 import { loginStyle } from './../../assets/css/spinner';
+import ErrorMessage from '../../components/errorMessage/errorMessage.component';
 
 const ProductOptions = () => {
   const {
@@ -129,6 +130,26 @@ const ProductOptions = () => {
   };
   const [clickUpdate, setClickUpdate] = useState(false);
   console.log(clickUpdate);
+
+  const validateBarCode = (barCode) => {
+    if (/^\d+$/.test(barCode) && barCode.length > 9) {
+      return true;
+    }
+    return false;
+  };
+
+  const validatePositiveValues = (value) => {
+    if (/^\d+$/.test(value) && value > 0) {
+      return true;
+    }
+    return false;
+  };
+
+  const [typing, setTyping] = useState({
+    barCode: false,
+    points: false,
+    weight: false,
+  });
   return (
     <div className="container">
       <p className="subtitle-products">Products</p>
@@ -209,8 +230,14 @@ const ProductOptions = () => {
               onChange={(e) =>
                 setProduct({ ...product, qrCode: e.target.value })
               }
+              onFocus={() => setTyping({ ...typing, barCode: true })}
+              onBlur={() => setTyping({ ...typing, barCode: false })}
             />
-
+            {!typing['barCode'] &&
+              product.qrCode &&
+              !validateBarCode(product.qrCode) && (
+                <ErrorMessage message="Please enter a valid barCode" />
+              )}
             <input
               type="text"
               name="points"
@@ -219,7 +246,14 @@ const ProductOptions = () => {
               onChange={(e) =>
                 setProduct({ ...product, points: e.target.value })
               }
+              onFocus={() => setTyping({ ...typing, points: true })}
+              onBlur={() => setTyping({ ...typing, points: false })}
             />
+            {!typing['points'] &&
+              product.points &&
+              !validatePositiveValues(product.points) && (
+                <ErrorMessage message="Please enter valid points!" />
+              )}
 
             <input
               type="text"
@@ -229,7 +263,15 @@ const ProductOptions = () => {
               onChange={(e) =>
                 setProduct({ ...product, weight: e.target.value })
               }
+              onFocus={() => setTyping({ ...typing, weight: true })}
+              onBlur={() => setTyping({ ...typing, weight: false })}
             />
+
+            {!typing['weight'] &&
+              product.weight &&
+              !validatePositiveValues(product.weight) && (
+                <ErrorMessage message="Please enter a valid weight!" />
+              )}
 
             <br />
             <br />
