@@ -39,7 +39,17 @@ const ProductModal = ({
           </span>
           <div className="wrapper-modal-product">
             <div className="image-single-product-modal">
-              {!clickedBtn && !errorMessage && <img src={img} alt="" />}
+              {!clickedBtn && !errorMessage && (
+                <img
+                  src={product.image}
+                  style={{
+                    width: '150px',
+                    height: '150px',
+                    borderRadius: '100%',
+                  }}
+                  alt=""
+                />
+              )}
               {clickedBtn && !errorMessage && !showSpinner && (
                 <img src={happy} alt="" />
               )}

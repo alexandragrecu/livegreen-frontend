@@ -46,7 +46,7 @@ export const changePassword = async (
       setUser(response.data.data.user);
       setToken(response.data.token);
     } else if (response.status === 401 && response.data.status === 'fail') {
-      setErrorMessage(`${response.data.message} We could not update it.`);
+      setErrorMessage(`We could not update your password.`);
     } else {
       setErrorMessage('An error occured. Please try again later.');
     }

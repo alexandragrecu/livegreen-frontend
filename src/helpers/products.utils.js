@@ -125,15 +125,17 @@ export const createProduct = async (
   data.weight = parseInt(data.weight, 10);
 
   console.log(data);
-  const response = await productService.createProduct(data);
-  console.log('response', response);
-  await getProducts(
-    {},
-    setProducts,
-    setNrProducts,
-    setErrorMessage,
-    setShowSpinner
-  );
+  if (data.points > 0 && data.weight > 0) {
+    const response = await productService.createProduct(data);
+    console.log('response', response);
+    await getProducts(
+      {},
+      setProducts,
+      setNrProducts,
+      setErrorMessage,
+      setShowSpinner
+    );
+  }
   setShowSpinner(false);
 };
 
@@ -147,14 +149,16 @@ export const updateSpecificProduct = async (
 ) => {
   setShowSpinner(true);
   console.log('paraaams', params);
-  const response = await productService.updateProduct(params, data);
-  await getProducts(
-    {},
-    setProducts,
-    setNrProducts,
-    setErrorMessage,
-    setShowSpinner
-  );
+  if (data.points > 0 && data.weight > 0) {
+    const response = await productService.updateProduct(params, data);
+    await getProducts(
+      {},
+      setProducts,
+      setNrProducts,
+      setErrorMessage,
+      setShowSpinner
+    );
+  }
   setShowSpinner(false);
 };
 

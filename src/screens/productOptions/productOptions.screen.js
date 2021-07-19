@@ -231,11 +231,11 @@ const ProductOptions = () => {
 
             <br />
             <br />
-            <FileBase
+            {/* <FileBase
               type="file"
               multiple={false}
               onDone={({ base64 }) => setProduct({ ...product, image: 'none' })}
-            />
+            /> */}
             <input
               type="submit"
               name=""

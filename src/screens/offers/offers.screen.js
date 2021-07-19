@@ -254,7 +254,7 @@ const Offers = () => {
                     </div>
                     <div className="col-md-6 col-xs-12">
                       <div className="title-general-home">
-                        Titlu <span>oferta</span>
+                        Here is an <span>offer</span>
                       </div>
                       <div className="text-general-home">
                         Details: {offer.description}
