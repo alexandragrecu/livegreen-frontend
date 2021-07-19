@@ -18,6 +18,7 @@ import {
   validateEmail,
   validateFieldsForRegister,
   validatePassword,
+  validateZipCode,
 } from '../../helpers/validateFields.utils';
 import { doRegister } from '../../helpers/authenticate.utils';
 
@@ -181,6 +182,12 @@ const Register = () => {
                   {typing['registerButton'] &&
                     registerCredentials.zipCode.length === 0 && (
                       <ErrorMessage message="Please enter your ZIP code!" />
+                    )}
+                  {console.log('Zip code typing', typing['zipCode'])}
+                  {!typing['zipCode'] &&
+                    registerCredentials.zipCode.length !== 0 &&
+                    !validateZipCode(registerCredentials.zipCode) && (
+                      <ErrorMessage message="Please enter a valid ZIP Code!" />
                     )}
                 </div>
                 <div className="form-group">

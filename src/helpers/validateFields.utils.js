@@ -86,3 +86,12 @@ export const validateFieldsForEditAccount = (updatedUser, passwords) => {
   }
   return false;
 };
+
+// validate zip code
+export const validateZipCode = (zipCode) => {
+  console.log('zipCode', zipCode);
+  if (/^\d+$/.test(zipCode) && zipCode.length === 6) {
+    return true;
+  }
+  return false;
+};
