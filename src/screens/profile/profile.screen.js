@@ -179,7 +179,7 @@ const Profile = () => {
             >
               <Map
                 googleMapURL={
-                  'https://maps.googleapis.com/maps/api/js?key=AIzaSyBQ56ZZfTL3fSimAYL3i9Ry6TptGHyV1iY&libraries=places'
+                  'https://maps.googleapis.com/maps/api/js?key='
                 }
                 zoom={coordinates.length ? 13 : 11}
                 coordinates={coordinates}
